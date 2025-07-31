@@ -1,11 +1,14 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
+import path from "path";
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
+    tsconfigPaths(),
     VitePWA({
       registerType: "autoUpdate",
       manifest: {
@@ -32,8 +35,9 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      "@styles": "./src/styles",
-      "@components": "./src/components",
+      "@styles": path.resolve(__dirname, "src/styles"),
+      "@components": path.resolve(__dirname, "src/shared/components"),
+      "@screens": path.resolve(__dirname, "src/screens"),
     },
   },
 });
