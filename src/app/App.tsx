@@ -2,6 +2,8 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../styles/GlobalStyles';
 import theme from '../styles/theme';
 import type { ReactNode } from 'react';
+import { LanguageProvider } from 'context/LanguageContext';
+import { SettingsProvider } from 'context/SettingContext';
 
 type AppProps = {
   children: ReactNode,
@@ -9,10 +11,14 @@ type AppProps = {
 
 function App({ children }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      {children}
-    </ThemeProvider>
+    <SettingsProvider>
+      <LanguageProvider>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          {children}
+        </ThemeProvider>
+      </LanguageProvider>
+    </SettingsProvider>
   );
 }
 
