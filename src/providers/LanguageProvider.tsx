@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import { i18n } from "i18n";
 import type { TranslationSchema } from "i18n/types";
 import type { LanguageCode } from "i18n/types";
-import { useSettings } from "./SettingContext";
+import { useSettings } from "./SettingProvider";
 
 
 type LanguageContextType = {

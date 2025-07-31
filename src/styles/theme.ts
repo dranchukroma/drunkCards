@@ -4,7 +4,7 @@ const theme = {
     heading: "Istok Web",
     paragraf: "Istok Web",
   },
-  fontWeight: {
+  fontSize: {
     logo: "30px",
     bigHeading: "50px",
     mediumHeading: "30px",
@@ -16,7 +16,7 @@ const theme = {
     mediumButton: "30px",
     smallButton: "30px",
   },
-  fontSize: {
+  fontWeight: {
     bold: "700",
     regular: "500",
     light: "300",

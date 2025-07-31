@@ -7,7 +7,7 @@ type MenuProps = {
 export function Menu({} : MenuProps){
     return (
         <Wrapper>
-
+asdf
         </Wrapper>
     )
 }
