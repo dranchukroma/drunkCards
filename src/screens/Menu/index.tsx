@@ -1,18 +1,19 @@
 import { MenuWrapper, StyledImageLogo, SuitsWrapper, LogoLabel, IconClubs, IconHearts, IconDiamonds, IconSpades } from "./Menu.styled";
-import TextLogo from "shared/components/Logo/TextLogo";
 import MenuButton from "shared/components/Buttons/MenuButton";
 import { useLanguage } from "../../providers/LanguageProvider";
 import { useNavigate } from "react-router-dom";
 import { useSettings } from "@providers/SettingProvider";
+import { useNativeArrow } from "@providers/NativeArrowProvider";
 
 export function Menu() {
     const { translations } = useLanguage();
     const { appTheme, gameSetup } = useSettings();
+    const { hide } = useNativeArrow();
     const navigate = useNavigate();
+    hide();
 
     return (
         <MenuWrapper>
-            <TextLogo fillColor={appTheme.logoColor} />
             <StyledImageLogo fillColor={appTheme.logoColor} />
             <SuitsWrapper>
                 <IconClubs fillColor={appTheme.logoColor} />

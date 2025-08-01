@@ -1,14 +1,20 @@
-import { Wrapper } from "./Settings.styled";
+import { useNativeArrow } from "@providers/NativeArrowProvider";
+import { SettingWrapper } from "./Settings.styled";
+import { useNavigate } from "react-router-dom";
 
 type SettingsProps = {
 
 }
 
 export function Settings({} : SettingsProps){
-    return (
-        <Wrapper>
+    const navigate = useNavigate();
+    const { show } = useNativeArrow();
+    show(() => navigate(-1));
 
-        </Wrapper>
+    return (
+        <SettingWrapper>
+            asdf
+        </SettingWrapper>
     )
 }
 

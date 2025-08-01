@@ -1,12 +1,11 @@
 import { LogoContainer, TopLogo, /*MiddleLogo, BottomLogo*/ } from "./TextLogo.styled"
+import { useSettings } from "@providers/SettingProvider";
 
-type TextLogoProps = {
-    fillColor?: string,
-}
+function TextLogo() {
+    const { appTheme } = useSettings();
 
-function TextLogo({ fillColor = '#EEE'}: TextLogoProps) {
     return (
-        <LogoContainer fillColor={fillColor}>
+        <LogoContainer fillColor={appTheme.logoColor}>
             <TopLogo>Drunk Cards</TopLogo>
             {/* <MiddleLogo>Drunk Cards</MiddleLogo>
             <BottomLogo>Drunk Cards</BottomLogo> */}

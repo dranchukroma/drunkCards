@@ -1,18 +1,21 @@
 import type { ReactNode } from "react";
 import { SettingsProvider } from "./SettingProvider";
 import { LanguageProvider } from "./LanguageProvider";
+import { NativeArrowProvider } from "./NativeArrowProvider";
 
 type AppProviderProps = {
     children: ReactNode;
 }
 
-function AppProvider ({ children }: AppProviderProps) {
+function AppProvider({ children }: AppProviderProps) {
     return (
-        <SettingsProvider>
-            <LanguageProvider>
-                {children}
-            </LanguageProvider>
-        </SettingsProvider>
+        <NativeArrowProvider>
+            <SettingsProvider>
+                <LanguageProvider>
+                    {children}
+                </LanguageProvider>
+            </SettingsProvider>
+        </NativeArrowProvider>
     )
 }
 

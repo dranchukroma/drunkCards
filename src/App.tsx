@@ -1,4 +1,3 @@
-import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '@styles/GlobalStyles';
 import { useSettings } from '@providers/SettingProvider';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
@@ -8,6 +7,8 @@ import Rules from '@screens/Rules';
 import GameSetup from '@screens/GameSetup';
 import Game from '@screens/Game';
 import PwaInstall from '@screens/PwaInstall';
+import TextLogo from '@components/Logo/TextLogo';
+import NativeArrow from '@components/Buttons/NativeArrow';
 
 function App() {
   const { appTheme } = useSettings();
@@ -15,6 +16,8 @@ function App() {
   return (
     <BrowserRouter>
       <GlobalStyle appTheme={appTheme} />
+      <NativeArrow />
+      <TextLogo />
       <Routes>
         <Route path='/' element={<Menu />} />
         <Route path='/settings' element={<Settings />} />
