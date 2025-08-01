@@ -19,10 +19,10 @@ export const StyledImageLogo = styled(ImageLogo)`
 `
 const FloatingSuits = keyframes`
     from{
-    transform: translateY(0);
+      transform: translateY(0) scale(1.5);
     }
     to{
-    transform: translateY(20%)
+      transform: translateY(50%) scale(1);
     }
 `
 

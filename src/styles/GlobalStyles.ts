@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle<{ appTheme: AppThemeType }>`
     h1 {
         font-family: ${theme.fontFamily.logo};
         font-size: ${theme.fontSize.logo};
-        font-weight: ${theme.fontWeight.regular};
+        font-weight: ${theme.fontWeight.bold};
     }
 
     h2, h3, h4, h5, h6 {
