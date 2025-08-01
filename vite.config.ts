@@ -38,6 +38,7 @@ export default defineConfig({
       "@styles": path.resolve(__dirname, "src/styles"),
       "@components": path.resolve(__dirname, "src/shared/components"),
       "@screens": path.resolve(__dirname, "src/screens"),
+      "@providers": path.resolve(__dirname, "src/providers"),
     },
   },
 });

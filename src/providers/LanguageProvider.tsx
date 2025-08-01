@@ -28,7 +28,6 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
         translations,
     }
 
-    console.log(currentLanguage)
     return (
         <LanguageContext.Provider value={value}>
             {children}

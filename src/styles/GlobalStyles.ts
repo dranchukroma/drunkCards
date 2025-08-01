@@ -1,11 +1,13 @@
 import { createGlobalStyle } from 'styled-components';
 import theme from './theme';
+import type { AppThemeType } from './theme';
 
-const GlobalStyle = createGlobalStyle<{ mainBg: { base: string; gradient: string } }>`
+const GlobalStyle = createGlobalStyle<{ appTheme: AppThemeType }>`
     html, body {
-        background: ${({ mainBg }) => mainBg.base};
-        background: ${({ mainBg }) => mainBg.gradient};
+        background: ${({ appTheme }) => appTheme.base || "#EEE"};
+        background: ${({ appTheme }) => appTheme.gradient || "#EEE"};
     }
+    
 
     h1 {
         font-family: ${theme.fontFamily.logo};
@@ -23,6 +25,10 @@ const GlobalStyle = createGlobalStyle<{ mainBg: { base: string; gradient: string
         font-family: ${theme.fontFamily.paragraf};
         font-size: ${theme.fontSize.mediumParagraf};
         font-weight: ${theme.fontWeight.regular};
+    }
+
+    button {
+        font-family: ${theme.fontFamily.paragraf};
     }
 `;
 

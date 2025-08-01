@@ -1,6 +1,7 @@
 import { useContext, createContext, useState } from "react";
 import type { ReactNode } from 'react';
 import type { LanguageCode } from "i18n/types";
+import theme, { type AppThemeType } from "@styles/theme";
 
 type SettingsContextType = {
     setLanguage: (value: LanguageCode) => void;
@@ -19,6 +20,7 @@ type SettingsContextType = {
     limitTime: number;
     limitCards: number;
     gameSetup: boolean;
+    appTheme: AppThemeType;
 };
 
 const SettingsContext = createContext<SettingsContextType | null>(null);
@@ -66,6 +68,7 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
         }))
     }
 
+    const bgKey = settings.background as keyof typeof theme.appTheme;
     const value = {
         setLanguage: (newValue: LanguageCode) => setNewSettingValue('language', newValue),
         setMultiLanguage: (newValue: boolean) => setNewSettingValue('multiLanguage', newValue),
@@ -75,6 +78,13 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
         setLimitTime: (newValue: number) => setNewSettingValue('limitTime', newValue),
         setLimitCards: (newValue: number) => setNewSettingValue('limitCards', newValue),
         setGameSetup: (newValue: boolean) => setNewSettingValue('gameSetup', newValue),
+        appTheme: theme.appTheme[bgKey] || {
+            base: "#C5B0CD",
+            gradient:
+                "radial-gradient(circle,rgba(197, 176, 205, 1) 0%, rgba(161, 97, 185, 1) 100%)",
+            fontColor: '#EEE',
+            logoColor: "#EEE",
+        },
         ...settings
     };
 

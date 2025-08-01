@@ -35,6 +35,9 @@
       "@screens/*": [
         "screens/*"
       ],
+      "@providers": [
+        "providers/*",
+      ],
     }
   },
   "include": [
