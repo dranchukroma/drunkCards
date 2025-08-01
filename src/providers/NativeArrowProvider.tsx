@@ -15,7 +15,7 @@ type NativeArrowProviderProps = {
 }
 
 export function NativeArrowProvider({ children }: NativeArrowProviderProps) {
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState(false);
     const [onClick, setOnClick] = useState<(() => void) | null>(null);
 
     const show = (onClickHandler?: () => void) => {

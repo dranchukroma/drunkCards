@@ -4,13 +4,17 @@ import { useLanguage } from "../../providers/LanguageProvider";
 import { useNavigate } from "react-router-dom";
 import { useSettings } from "@providers/SettingProvider";
 import { useNativeArrow } from "@providers/NativeArrowProvider";
+import { useEffect } from "react";
 
 export function Menu() {
     const { translations } = useLanguage();
     const { appTheme, gameSetup } = useSettings();
     const { hide } = useNativeArrow();
     const navigate = useNavigate();
-    hide();
+
+    useEffect(() => {
+        hide();
+    }, []);
 
     return (
         <MenuWrapper>
@@ -21,7 +25,7 @@ export function Menu() {
                 <IconDiamonds fillColor={appTheme.logoColor} />
                 <IconSpades fillColor={appTheme.logoColor} />
             </SuitsWrapper>
-            <LogoLabel fillColor={appTheme.logoColor}>
+            <LogoLabel $fillColor={appTheme.logoColor}>
                 The game begins. Will you endure?
             </LogoLabel>
             <MenuButton onClick={() => navigate(gameSetup ? '/setup' : '/game')}>

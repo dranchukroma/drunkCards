@@ -6,14 +6,14 @@ const wave = keyframes`
   to { transform: translateY(10%); }
 `;
 
-export const LogoContainer = styled.div<{fillColor: string}>`
+export const LogoContainer = styled.div<{$fillColor: string}>`
   position: relative;
   height: 35px;
   width: 100%;
   text-align: center;
   font-size: ${theme.fontSize.logo};
   font-weight: ${theme.fontWeight.bold};
-  color: ${({ fillColor }) => fillColor};
+  color: ${({ $fillColor }) => $fillColor};
   margin: 20px 0;
 `;
 

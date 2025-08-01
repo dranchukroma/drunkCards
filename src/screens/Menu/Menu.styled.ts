@@ -51,8 +51,8 @@ export const IconSpades = styled(Spades)`
   animation: ${FloatingSuits} 1s ease-in-out infinite alternate-reverse;
 `
 
-export const LogoLabel = styled.h2<{ fillColor: string }>`
-    color: ${({ fillColor }) => fillColor};
+export const LogoLabel = styled.h2<{ $fillColor: string }>`
+    color: ${({ $fillColor }) => $fillColor};
     font-size: ${theme.fontSize.smallParagraf};
     font-weight: ${theme.fontWeight.bold};
     margin-bottom: 20px;

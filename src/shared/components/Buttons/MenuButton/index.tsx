@@ -11,7 +11,7 @@ function MenuButton({ children, onClick }: MenuButtonProps){
     const { appTheme } = useSettings();
 
     return (
-        <StyledButtonContainer onClick={onClick} appTheme={appTheme}>
+        <StyledButtonContainer onClick={onClick} $appTheme={appTheme}>
             {children}
         </StyledButtonContainer>
     )
