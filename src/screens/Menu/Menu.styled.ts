@@ -1,11 +1,11 @@
 import styled, { keyframes } from "styled-components";
-import ScreenWrapper from "shared/components/ScreenWrapper";
-import ImageLogo from "shared/components/Logo/ImageLogo";
+import ScreenWrapper from "@components/ScreenWrapper";
+import ImageLogo from "@components/Logo/ImageLogo";
 import theme from "@styles/theme";
-import Clubs from "shared/components/Icons/Clubs";
-import Diamonds from "shared/components/Icons/Diamonds";
-import Hearts from "shared/components/Icons/Hearts";
-import Spades from "shared/components/Icons/Spades";
+import Clubs from "@components/Icons/Clubs";
+import Diamonds from "@components/Icons/Diamonds";
+import Hearts from "@components/Icons/Hearts";
+import Spades from "@components/Icons/Spades";
 
 export const MenuWrapper = styled(ScreenWrapper)`
     display: flex;

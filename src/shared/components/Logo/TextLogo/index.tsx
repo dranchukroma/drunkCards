@@ -1,4 +1,4 @@
-import { LogoContainer, TopLogo, MiddleLogo, BottomLogo } from "./TextLogo.styled"
+import { LogoContainer, TopLogo, /*MiddleLogo, BottomLogo*/ } from "./TextLogo.styled"
 
 type TextLogoProps = {
     fillColor?: string,

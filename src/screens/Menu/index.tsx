@@ -2,8 +2,8 @@ import { MenuWrapper, StyledImageLogo, SuitsWrapper, LogoLabel, IconClubs, IconH
 import TextLogo from "shared/components/Logo/TextLogo";
 import MenuButton from "shared/components/Buttons/MenuButton";
 import { useLanguage } from "../../providers/LanguageProvider";
-import { useSettings } from "../../providers/SettingProvider";
 import { useNavigate } from "react-router-dom";
+import { useSettings } from "@providers/SettingProvider";
 
 export function Menu() {
     const { translations } = useLanguage();

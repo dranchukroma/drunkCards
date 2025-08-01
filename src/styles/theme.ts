@@ -43,7 +43,7 @@ const theme = {
 
       toggleBackground: '#4242429E',
       fontColor: '#000',
-      logoColor: "#EEE",
+      logoColor: "#000",
       boxShadow: '-4px 4px 4px 0px rgba(0, 0, 0, 0.25)',
       textShadow: '-4px 4px 4px rgba(0, 0, 0, 0.25)'
     },

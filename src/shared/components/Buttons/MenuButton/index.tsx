@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { useSettings } from "../../../../providers/SettingProvider";
+import { useSettings } from "@providers/SettingProvider";
 import { StyledButtonContainer } from "./MenuButton.styled";
 
 type MenuButtonProps = {

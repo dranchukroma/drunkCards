@@ -1,6 +1,6 @@
 import { ThemeProvider } from 'styled-components';
-import GlobalStyle from './styles/GlobalStyles';
-import { useSettings } from 'providers/SettingProvider';
+import GlobalStyle from '@styles/GlobalStyles';
+import { useSettings } from '@providers/SettingProvider';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import Menu from '@screens/Menu';
 import Settings from '@screens/Settings';
