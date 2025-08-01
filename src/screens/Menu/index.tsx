@@ -12,13 +12,13 @@ export function Menu() {
 
     return (
         <MenuWrapper>
-            <TextLogo fillColor={appTheme.logoColor}/>
-            <StyledImageLogo fillColor={appTheme.logoColor}/>
+            <TextLogo fillColor={appTheme.logoColor} />
+            <StyledImageLogo fillColor={appTheme.logoColor} />
             <SuitsWrapper>
-                <IconClubs fillColor={appTheme.logoColor}/>
-                <IconHearts fillColor={appTheme.logoColor}/>
-                <IconDiamonds fillColor={appTheme.logoColor}/>
-                <IconSpades fillColor={appTheme.logoColor}/>
+                <IconClubs fillColor={appTheme.logoColor} />
+                <IconHearts fillColor={appTheme.logoColor} />
+                <IconDiamonds fillColor={appTheme.logoColor} />
+                <IconSpades fillColor={appTheme.logoColor} />
             </SuitsWrapper>
             <LogoLabel fillColor={appTheme.logoColor}>
                 The game begins. Will you endure?
@@ -32,7 +32,6 @@ export function Menu() {
             <MenuButton onClick={() => navigate('/settings')}>
                 {translations.menu.settingsCTA}
             </MenuButton>
-
         </MenuWrapper>
     )
 }
