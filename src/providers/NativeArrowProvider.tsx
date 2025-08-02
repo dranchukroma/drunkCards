@@ -4,7 +4,7 @@ type NativeArrowContextType = {
     show: (onClick?: () => void) => void;
     hide: () => void;
     visible: boolean;
-    onClick: (() => void) | null;
+    onClick: (() => void);
 }
 
 const NativeArrowContext = createContext<NativeArrowContextType | null>(null);
@@ -16,7 +16,7 @@ type NativeArrowProviderProps = {
 
 export function NativeArrowProvider({ children }: NativeArrowProviderProps) {
     const [visible, setVisible] = useState(false);
-    const [onClick, setOnClick] = useState<(() => void) | null>(null);
+    const [onClick, setOnClick] = useState<(() => void)>(() => {});
 
     const show = (onClickHandler?: () => void) => {
         setVisible(true);
@@ -25,7 +25,7 @@ export function NativeArrowProvider({ children }: NativeArrowProviderProps) {
 
     const hide = () => {
         setVisible(false);
-        setOnClick(null);
+        setOnClick(() => {});
     }
 
     const value = {

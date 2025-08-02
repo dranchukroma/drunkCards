@@ -29,6 +29,7 @@
       "@components/*": ["shared/components/*"],
       "@screens/*": ["screens/*"],
       "@providers/*": ["providers/*"],
+      "@hooks/*": ["shared/hooks/*"],
     },
 
     /* Types */
