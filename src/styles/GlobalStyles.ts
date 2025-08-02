@@ -3,7 +3,7 @@ import theme from './theme';
 import type { AppThemeType } from './theme';
 
 const GlobalStyle = createGlobalStyle<{ appTheme: AppThemeType }>`
-    html, body {
+    html, body, meta[name="theme-color"] {
         background: ${({ appTheme }) => appTheme.base || "#EEE"};
         background: ${({ appTheme }) => appTheme.gradient || "#EEE"};
     }

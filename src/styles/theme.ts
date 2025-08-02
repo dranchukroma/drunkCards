@@ -35,7 +35,7 @@ const theme = {
   },
   appTheme: {
     bg1: {
-      base: "#C5B0CD",
+      base: "#A161B9",
       gradient:
         "radial-gradient(circle,rgba(197, 176, 205, 1) 0%, rgba(161, 97, 185, 1) 100%)",
       uiBase: '#F3E2D4',

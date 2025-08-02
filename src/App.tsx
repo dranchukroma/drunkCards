@@ -9,9 +9,19 @@ import Game from '@screens/Game';
 import PwaInstall from '@screens/PwaInstall';
 import TextLogo from '@components/Logo/TextLogo';
 import NativeArrow from '@components/Buttons/NativeArrow';
+import { useEffect } from 'react';
+import theme from '@styles/theme';
 
 function App() {
   const { appTheme } = useSettings();
+
+  useEffect(() => {
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (metaTheme) {
+      metaTheme.setAttribute("content", appTheme.base);
+    }
+  }, []);
+
 
   return (
     <BrowserRouter>

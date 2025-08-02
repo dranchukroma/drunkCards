@@ -9,7 +9,12 @@ export default defineConfig({
     react(),
     tsconfigPaths(),
     VitePWA({
+      devOptions: {
+        enabled: true
+      }, // Delete on prd
       registerType: "autoUpdate",
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'icons/*.png'],
+      injectRegister: 'auto',
       manifest: {
         name: "Drunk Cards",
         short_name: "Drunk Cards",
@@ -19,13 +24,13 @@ export default defineConfig({
         theme_color: "#000000",
         icons: [
           {
-            src: "web-app-manifest-192x192.png",
+            src: "/icons/web-app-manifest-192x192.png",
             sizes: "192x192",
             type: "image/png",
             purpose: "maskable"
           },
           {
-            src: "web-app-manifest-512x512.png",
+            src: "/icons/web-app-manifest-512x512.png",
             sizes: "512x512",
             type: "image/png",
             purpose: "maskable"
