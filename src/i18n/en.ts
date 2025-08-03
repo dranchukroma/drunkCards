@@ -7,7 +7,7 @@ export const en = {
     },
     settings: {
         cardLimit: "Card limit",
-        limitTime: "Time limit",
+        limitTime: "Time limit (min)",
         music: "Music",
         sounds: "Sounds",
         background: "Background",
