@@ -10,7 +10,8 @@ export default defineConfig({
     tsconfigPaths(),
     VitePWA({
       devOptions: {
-        enabled: true
+        enabled: true, // або false, якщо не хочеш PWA в dev
+        suppressWarnings: true, // <--- головне
       }, // Delete on prd
       registerType: "autoUpdate",
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'icons/*.png'],

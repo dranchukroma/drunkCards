@@ -3,6 +3,7 @@ export type AppThemeType = {
   gradient: string,
   uiBase: string,
   uiGradient: string,
+  uiSelected: string,
   toggleBackground: string,
   fontColor: string,
   logoColor: string,
@@ -40,7 +41,7 @@ const theme = {
         "radial-gradient(circle,rgba(197, 176, 205, 1) 0%, rgba(161, 97, 185, 1) 100%)",
       uiBase: '#F3E2D4',
       uiGradient: 'linear-gradient(-90deg,rgba(243, 226, 212, 1) 0%, rgba(244, 233, 225, 1) 100%)',
-
+      uiSelected: '#F3E2D4',
       toggleBackground: '#4242429E',
       fontColor: '#000',
       logoColor: "#000",

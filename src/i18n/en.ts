@@ -5,6 +5,18 @@ export const en = {
         rulesCTA: "Rules",
         settingsCTA: "Settings",
     },
+    settings: {
+        cardLimit: "Card limit",
+        limitTime: "Time limit",
+        music: "Music",
+        sounds: "Sounds",
+        background: "Background",
+        multiLanguage: 'Multi language',
+        gameSetUp: 'Game set up',
+        language: 'Language',
+        yesOption: 'Yes',
+        noOption: 'No',
+    },
     game: {
         showCard: "Show card",
         cardAction: {

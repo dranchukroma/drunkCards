@@ -7,6 +7,18 @@ export type TranslationSchema = {
         rulesCTA: string;
         settingsCTA: string;
     };
+    settings: {
+        cardLimit: string;
+        limitTime: string;
+        music: string;
+        sounds: string;
+        background: string;
+        multiLanguage: string;
+        gameSetUp: string;
+        language: string;
+        yesOption: string;
+        noOption: string;
+    },
     game: {
         showCard: string;
         cardAction: {

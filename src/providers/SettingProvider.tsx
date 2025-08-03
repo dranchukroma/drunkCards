@@ -38,7 +38,7 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
     }
     const setDefaultBoolean = (key: string, defaultValue: boolean): boolean => {
         const item = localStorage.getItem(key);
-        if (item) return Boolean(item);
+        if (item) return item === 'true';
         localStorage.setItem(key, String(defaultValue));
         return defaultValue;
     }
@@ -55,8 +55,8 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
         sounds: setDefaultBoolean('sounds', true),
         music: setDefaultBoolean('music', true),
         background: setDefaultString('background', 'bg1'),
-        limitTime: setDefaultNumber('limitTime', 15),
-        limitCards: setDefaultNumber('limitCards', 15),
+        limitTime: setDefaultNumber('limitTime', 90),
+        limitCards: setDefaultNumber('limitCards', 36),
         gameSetup: setDefaultBoolean('gameSetup', true),
     })
 
