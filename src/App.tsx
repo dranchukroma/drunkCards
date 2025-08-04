@@ -10,7 +10,7 @@ import PwaInstall from '@screens/PwaInstall';
 import TextLogo from '@components/Logo/TextLogo';
 import NativeArrow from '@components/Buttons/NativeArrow';
 import { useEffect } from 'react';
-import theme from '@styles/theme';
+import { Toaster } from 'sonner';
 
 function App() {
   const { style } = useSettings();
@@ -37,6 +37,7 @@ function App() {
         <Route path='/game' element={<Game />} />
         <Route path='/PwaInstall' element={<PwaInstall />} />
       </Routes>
+      <Toaster visibleToasts={1} position={'bottom-center'} closeButton/>
     </BrowserRouter>
   );
 }

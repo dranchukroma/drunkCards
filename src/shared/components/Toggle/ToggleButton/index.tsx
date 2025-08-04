@@ -12,12 +12,14 @@ type ToggleButtonProps<T extends string | number | boolean> = {
     options: OptionsType<T>[];
     defaultOption: T;
     onOptionChange: (option: T) => void;
+    disabled?: boolean;
 }
 
 function ToggleButton<T extends string | number | boolean>({
     options,
     defaultOption,
     onOptionChange,
+    disabled,
 }: ToggleButtonProps<T>) {
     const [selected, setSelected] = useState<T>(defaultOption);
     const { style } = useSettings();
@@ -34,7 +36,7 @@ function ToggleButton<T extends string | number | boolean>({
                         $bgColor={style.appTheme.uiSelected}
                         $active={selected === option.value}
                         onClick={() => {
-                            if(selected === option.value) return;
+                            if(selected === option.value || disabled) return;
                             setSelected(option.value);
                             onOptionChange(option.value);
                             clickSound();

@@ -9,13 +9,21 @@ export type TranslationSchema = {
     };
     settings: {
         cardLimit: string;
+        cardLimitTooltip: string;
         limitTime: string;
+        limitTimeTooltip: string;
         music: string;
+        musicTooltip: string;
         sounds: string;
+        soundsTooltip: string;
         background: string;
+        backgroundTooltip: string;
         multiLanguage: string;
+        multiLanguageTooltip: string;
         gameSetUp: string;
+        gameSetUpTooltip: string;
         language: string;
+        languageTooltip: string;
         yesOption: string;
         noOption: string;
     },
