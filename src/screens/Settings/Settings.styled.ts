@@ -7,15 +7,15 @@ export const SettingWrapper = styled(ScreenWrapper)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* max-height: 80vh;
-  overflow-y: scroll */
+  //max-height: 80vh; To Do
+  //overflow-y: scroll To do
 `;
 
 export const Toggle = styled.div`
   margin-bottom: 20px;
 `;
 
-export const ToggleInfoWrapper = styled.div`
+export const InfoWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -2,10 +2,10 @@ import { LogoContainer, TopLogo, /*MiddleLogo, BottomLogo*/ } from "./TextLogo.s
 import { useSettings } from "@providers/SettingProvider";
 
 function TextLogo() {
-    const { appTheme } = useSettings();
+    const { style } = useSettings();
 
     return (
-        <LogoContainer $fillColor={appTheme.logoColor}>
+        <LogoContainer $fillColor={style.appTheme.logoColor}>
             <TopLogo>Drunk Cards</TopLogo>
             {/* <MiddleLogo>Drunk Cards</MiddleLogo>
             <BottomLogo>Drunk Cards</BottomLogo> */}

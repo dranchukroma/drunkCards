@@ -13,19 +13,20 @@ import { useEffect } from 'react';
 import theme from '@styles/theme';
 
 function App() {
-  const { appTheme } = useSettings();
+  const { style } = useSettings();
+  const appTheme = style.appTheme;
 
   useEffect(() => {
     const metaTheme = document.querySelector('meta[name="theme-color"]');
     if (metaTheme) {
-      metaTheme.setAttribute("content", appTheme.base);
+      metaTheme.setAttribute("content", style.appTheme.base);
     }
   }, []);
 
 
   return (
     <BrowserRouter>
-      <GlobalStyle appTheme={appTheme} />
+      <GlobalStyle appTheme={style.appTheme} />
       <NativeArrow />
       <TextLogo />
       <Routes>

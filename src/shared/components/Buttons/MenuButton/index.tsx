@@ -9,7 +9,7 @@ type MenuButtonProps = {
 }
 
 function MenuButton({ children, onClick }: MenuButtonProps) {
-    const { appTheme } = useSettings();
+    const { style } = useSettings();
     const clickSound = useSoundEffect('/sounds/soft-click.wav')
 
     return (
@@ -17,7 +17,7 @@ function MenuButton({ children, onClick }: MenuButtonProps) {
             onClick();
             clickSound();
         }}
-            $appTheme={appTheme}
+            $appTheme={style.appTheme}
         >
             {children}
         </StyledButtonContainer>

@@ -8,7 +8,8 @@ import { useEffect } from "react";
 
 export function Menu() {
     const { translations } = useLanguage();
-    const { appTheme, gameSetup } = useSettings();
+    const { style, game } = useSettings();
+    const appTheme = style.appTheme
     const { hide } = useNativeArrow();
     const navigate = useNavigate();
 
@@ -26,9 +27,9 @@ export function Menu() {
                 <IconSpades fillColor={appTheme.logoColor} />
             </SuitsWrapper>
             <LogoLabel $fillColor={appTheme.logoColor}>
-                The game begins. Will you endure?
+                {translations.menu.logoLabel}
             </LogoLabel>
-            <MenuButton onClick={() => navigate(gameSetup ? '/setup' : '/game')}>
+            <MenuButton onClick={() => navigate(game.gameSetup ? '/setup' : '/game')}>
                 {translations.menu.playCTA}
             </MenuButton>
             <MenuButton onClick={() => navigate('/rules')}>

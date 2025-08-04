@@ -1,109 +1,65 @@
 import { useNativeArrow } from "@providers/NativeArrowProvider";
 import { SettingWrapper } from "./Settings.styled";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useSettings } from "@providers/SettingProvider";
 import { useLanguage } from "@providers/LanguageProvider";
-import { options } from "./toggleOptions";
-import SettingOption from "./SettingOption";
+import ToggleGroup from "./ToggleGroup";
+import type { LanguageCode, TranslationSchema } from "i18n/types";
 
 export function Settings() {
-    const {
-        setLimitCards, limitCards,
-        setLanguage, language,
-        setMultiLanguage, multiLanguage,
-        setSounds, sounds,
-        setMusic, music,
-        setBackground, background,
-        setLimitTime, limitTime,
-        setGameSetup, gameSetup,
-    } = useSettings()
+    const { audio, game, language, style } = useSettings()
     const { translations } = useLanguage()
     const navigate = useNavigate();
 
     const { show } = useNativeArrow();
-    useEffect(() => show(() => navigate(-1)), []);
+    useEffect(() => show(() => navigate(-1)), [navigate]);
 
+    const toggleOptions = useMemo(() => getToggletOptions(translations), [translations]);
 
     return (
         <SettingWrapper>
-            <SettingOption
-                copy={translations.settings.music}
-                options={[
-                    {
-                        display: translations.settings.yesOption,
-                        value: true,
-                    },
-                    {
-                        display: translations.settings.noOption,
-                        value: false,
-                    }
-                ]}
-                defaultOption={music}
-                onOptionChange={(option) => setMusic(option)}
+            <ToggleGroup
+                label={translations.settings.music}
+                options={toggleOptions.booleanOptions}
+                defaultOption={audio.music}
+                onOptionChange={(option) => audio.setMusic(option)}
             />
-            <SettingOption
-                copy={translations.settings.sounds}
-                options={[
-                    {
-                        display: translations.settings.yesOption,
-                        value: true,
-                    },
-                    {
-                        display: translations.settings.noOption,
-                        value: false,
-                    }
-                ]}
-                defaultOption={sounds}
-                onOptionChange={(option) => setSounds(option)}
+            <ToggleGroup
+                label={translations.settings.sounds}
+                options={toggleOptions.booleanOptions}
+                defaultOption={audio.sounds}
+                onOptionChange={(option) => audio.setSounds(option)}
             />
-            <SettingOption
-                copy={translations.settings.multiLanguage}
-                options={[
-                    {
-                        display: translations.settings.yesOption,
-                        value: true,
-                    },
-                    {
-                        display: translations.settings.noOption,
-                        value: false,
-                    }
-                ]}
-                defaultOption={multiLanguage}
-                onOptionChange={(option) => setMultiLanguage(option)}
+            <ToggleGroup
+                label={translations.settings.multiLanguage}
+                options={toggleOptions.booleanOptions}
+                defaultOption={language.multiLanguage}
+                onOptionChange={(option) => language.setMultiLanguage(option)}
             />
-            <SettingOption
-                copy={translations.settings.gameSetUp}
-                options={[
-                    {
-                        display: translations.settings.yesOption,
-                        value: true,
-                    },
-                    {
-                        display: translations.settings.noOption,
-                        value: false,
-                    }
-                ]}
-                defaultOption={gameSetup}
-                onOptionChange={(option) => setGameSetup(option)}
+            <ToggleGroup
+                label={translations.settings.gameSetUp}
+                options={toggleOptions.booleanOptions}
+                defaultOption={game.gameSetup}
+                onOptionChange={(option) => game.setGameSetup(option)}
             />
-            <SettingOption
-                copy={translations.settings.cardLimit}
-                options={options.cardLimit}
-                defaultOption={limitCards}
-                onOptionChange={(option) => setLimitCards(option)}
+            <ToggleGroup
+                label={translations.settings.cardLimit}
+                options={toggleOptions.cardLimit}
+                defaultOption={game.limitCards}
+                onOptionChange={(option) => game.setLimitCards(option)}
             />
-            <SettingOption
-                copy={translations.settings.limitTime}
-                options={options.timeLimit}
-                defaultOption={limitTime}
-                onOptionChange={(option) => setLimitTime(option)}
+            <ToggleGroup
+                label={translations.settings.limitTime}
+                options={toggleOptions.timeLimit}
+                defaultOption={game.limitTime}
+                onOptionChange={(option) => game.setLimitTime(option)}
             />
-            <SettingOption
-                copy={translations.settings.language}
-                options={options.language}
-                defaultOption={language}
-                onOptionChange={(option) => setLanguage(option)}
+            <ToggleGroup
+                label={translations.settings.language}
+                options={toggleOptions.language}
+                defaultOption={language.language}
+                onOptionChange={(option) => language.setLanguage(option)}
             />
 
         </SettingWrapper>
@@ -111,3 +67,29 @@ export function Settings() {
 }
 
 export default Settings;
+
+const getToggletOptions = (t: TranslationSchema) => {
+    return {
+        cardLimit: [
+            { display: '36', value: 36 },
+            { display: '52', value: 52, },
+            { display: 'ꝏ', value: -1, },
+        ],
+        timeLimit: [
+            { display: '30', value: 30 },
+            { display: '60', value: 60, },
+            { display: '90', value: 90, },
+            { display: 'ꝏ', value: -1, },
+        ],
+        language: [
+            { display: '🇺🇸', value: "en" },
+            { display: '🇵🇱', value: "pl" },
+            { display: '🇺🇦', value: "uk" },
+        ] satisfies Array<{ display: string, value: LanguageCode }>,
+
+        booleanOptions: [
+            { display: t.settings.yesOption, value: true },
+            { display: t.settings.noOption, value: false },
+        ] satisfies Array<{ display: string, value: boolean }>,
+    }
+}

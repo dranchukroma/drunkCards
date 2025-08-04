@@ -18,7 +18,7 @@ type LanguageProviderProps = {
 
 export function LanguageProvider({ children }: LanguageProviderProps) {
     const { language } = useSettings();
-    const currentLanguage: LanguageCode = language;
+    const currentLanguage: LanguageCode = language.language;
 
     const translations = useMemo(() => {
         return i18n[currentLanguage] ?? i18n.en

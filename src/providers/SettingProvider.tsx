@@ -4,23 +4,31 @@ import type { LanguageCode } from "i18n/types";
 import theme, { type AppThemeType } from "@styles/theme";
 
 type SettingsContextType = {
-    setLanguage: (value: LanguageCode) => void;
-    setMultiLanguage: (value: boolean) => void;
-    setSounds: (value: boolean) => void;
-    setMusic: (value: boolean) => void;
-    setBackground: (value: string) => void;
-    setLimitTime: (value: number) => void;
-    setLimitCards: (value: number) => void;
-    setGameSetup: (value: boolean) => void;
-    language: LanguageCode;
-    multiLanguage: boolean;
-    sounds: boolean;
-    music: boolean;
-    background: string;
-    limitTime: number;
-    limitCards: number;
-    gameSetup: boolean;
-    appTheme: AppThemeType;
+    audio: {
+        setMusic: (value: boolean) => void;
+        music: boolean;
+        setSounds: (value: boolean) => void;
+        sounds: boolean;
+    },
+    game: {
+        setGameSetup: (value: boolean) => void;
+        gameSetup: boolean;
+        setLimitTime: (value: number) => void;
+        limitTime: number;
+        setLimitCards: (value: number) => void;
+        limitCards: number;
+    },
+    language: {
+        setLanguage: (value: LanguageCode) => void;
+        language: LanguageCode;
+        setMultiLanguage: (value: boolean) => void;
+        multiLanguage: boolean;
+    }
+    style: {
+        setBackground: (value: string) => void;
+        background: string;
+        appTheme: AppThemeType;
+    }
 };
 
 const SettingsContext = createContext<SettingsContextType | null>(null);
@@ -70,22 +78,31 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
 
     const bgKey = settings.background as keyof typeof theme.appTheme;
     const value = {
-        setLanguage: (newValue: LanguageCode) => setNewSettingValue('language', newValue),
-        setMultiLanguage: (newValue: boolean) => setNewSettingValue('multiLanguage', newValue),
-        setSounds: (newValue: boolean) => setNewSettingValue('sounds', newValue),
-        setMusic: (newValue: boolean) => setNewSettingValue('music', newValue),
-        setBackground: (newValue: string) => setNewSettingValue('background', newValue),
-        setLimitTime: (newValue: number) => setNewSettingValue('limitTime', newValue),
-        setLimitCards: (newValue: number) => setNewSettingValue('limitCards', newValue),
-        setGameSetup: (newValue: boolean) => setNewSettingValue('gameSetup', newValue),
-        appTheme: theme.appTheme[bgKey] || {
-            base: "#C5B0CD",
-            gradient:
-                "radial-gradient(circle,rgba(197, 176, 205, 1) 0%, rgba(161, 97, 185, 1) 100%)",
-            fontColor: '#EEE',
-            logoColor: "#EEE",
+        audio: {
+            setMusic: (newValue: boolean) => setNewSettingValue('music', newValue),
+            music: settings.music,
+            setSounds: (newValue: boolean) => setNewSettingValue('sounds', newValue),
+            sounds: settings.sounds,
         },
-        ...settings
+        game: {
+            setGameSetup: (newValue: boolean) => setNewSettingValue('gameSetup', newValue),
+            gameSetup: settings.gameSetup,
+            setLimitTime: (newValue: number) => setNewSettingValue('limitTime', newValue),
+            limitTime: settings.limitTime,
+            setLimitCards: (newValue: number) => setNewSettingValue('limitCards', newValue),
+            limitCards: settings.limitCards,
+        },
+        language: {
+            setLanguage: (newValue: LanguageCode) => setNewSettingValue('language', newValue),
+            language: settings.language,
+            setMultiLanguage: (newValue: boolean) => setNewSettingValue('multiLanguage', newValue),
+            multiLanguage: settings.multiLanguage,
+        },
+        style: {
+            setBackground: (newValue: string) => setNewSettingValue('background', newValue),
+            background: settings.background,
+            appTheme: theme.appTheme[bgKey],
+        }
     };
 
     return (
