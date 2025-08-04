@@ -1,13 +1,13 @@
 import { useNativeArrow } from "@providers/NativeArrowProvider";
 import { InfoWrapper, SettingWrapper, ToggleLabel, ToggleTooltip } from "./Settings.styled";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo } from "react";
 import { useSettings } from "@providers/SettingProvider";
 import { useLanguage } from "@providers/LanguageProvider";
 import ToggleGroup from "./ToggleGroup";
-import type { LanguageCode, TranslationSchema } from "i18n/types";
 import ThemeToggle from "@components/Toggle/ThemeToggle";
 import { toast } from "sonner";
+import { getToggletOptions } from "./toggleOptions";
 
 export function Settings() {
     const { audio, game, language, style } = useSettings()
@@ -91,28 +91,3 @@ export function Settings() {
 
 export default Settings;
 
-const getToggletOptions = (t: TranslationSchema) => {
-    return {
-        cardLimit: [
-            { display: '36', value: 36 },
-            { display: '52', value: 52, },
-            { display: 'ꝏ', value: -1, },
-        ],
-        timeLimit: [
-            { display: '30', value: 30 },
-            { display: '60', value: 60, },
-            { display: '90', value: 90, },
-            { display: 'ꝏ', value: -1, },
-        ],
-        language: [
-            { display: '🇺🇸', value: "en" },
-            { display: '🇵🇱', value: "pl" },
-            { display: '🇺🇦', value: "uk" },
-        ] satisfies Array<{ display: string, value: LanguageCode }>,
-
-        booleanOptions: [
-            { display: t.settings.yesOption, value: true },
-            { display: t.settings.noOption, value: false },
-        ] satisfies Array<{ display: string, value: boolean }>,
-    }
-}

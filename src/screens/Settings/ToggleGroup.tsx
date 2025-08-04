@@ -1,8 +1,9 @@
 import { InfoWrapper, ToggleLabel, ToggleTooltip, ToggleGroupContainer } from "./Settings.styled";
 import { useSettings } from "@providers/SettingProvider";
 import ToggleButton, { type OptionsType } from "@components/Toggle/ToggleButton";
+import type { ReactNode } from "react";
 
-type ToggleGroupType<T extends string | number | boolean> = {
+type ToggleGroupType<T extends string | number | boolean | ReactNode> = {
     label: string;
     options: OptionsType<T>[],
     defaultOption: T;
@@ -12,7 +13,7 @@ type ToggleGroupType<T extends string | number | boolean> = {
 }
 
 function ToggleGroup<
-    T extends string | number | boolean
+    T extends string | number | boolean | ReactNode
 >({ label, options, defaultOption, onOptionChange, onTooltip, disabled }: ToggleGroupType<T>) {
     const { style } = useSettings();
     const appTheme = style.appTheme;

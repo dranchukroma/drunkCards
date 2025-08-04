@@ -13,6 +13,7 @@ export const Toggle = styled.div<{ $appTheme: AppThemeType } >`
 
 export const OptionsWrapper = styled.div`
     border-radius: 10px;
+    background-color: #EEE;
     display: flex;
     height: 100%;
     cursor: pointer;

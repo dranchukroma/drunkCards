@@ -1,34 +1,29 @@
-import { OptionsWrapper, Toggle, ToggleOption } from './ToggleButton.styled';
+import { OptionsWrapper, Toggle, ToggleOption } from './LanguageToggle.styled';
 import { useEffect, useState, type ReactNode } from "react";
 import { useSettings } from "@providers/SettingProvider";
 import useSoundEffect from "@hooks/useSoundEffect";
 
-export type OptionsType<T extends string | number | boolean | ReactNode> = {
+export type OptionsType = {
     display: ReactNode;
-    value: T;
+    value: string;
 }
 
-type ToggleButtonProps<T extends string | number | boolean | ReactNode> = {
-    options: OptionsType<T>[];
-    defaultOption: T;
-    onOptionChange: (option: T) => void;
+type LanguageToggleProps = {
+    options: OptionsType[];
+    defaultOption: string;
+    onOptionChange: (option: string) => void;
     disabled?: boolean;
 }
 
-function ToggleButton<T extends string | number | boolean | ReactNode>({
-    options,
-    defaultOption,
-    onOptionChange,
-    disabled,
-}: ToggleButtonProps<T>) {
-    const [selected, setSelected] = useState<T>(defaultOption);
+function LanguageToggle({ options, defaultOption, onOptionChange, disabled }: LanguageToggleProps) {
+    const [selected, setSelected] = useState<string>(defaultOption);
     const { style } = useSettings();
     const clickSound = useSoundEffect('/sounds/soft-click.wav');
 
     useEffect(() => setSelected(defaultOption), [defaultOption]);
 
-    return (
-        <Toggle $appTheme={style.appTheme}>
+    return (<>
+        {disabled ? <Toggle $appTheme={style.appTheme}>
             <OptionsWrapper>
                 {options.map((option, index) => (
                     <ToggleOption
@@ -36,18 +31,18 @@ function ToggleButton<T extends string | number | boolean | ReactNode>({
                         $bgColor={style.appTheme.uiSelected}
                         $active={!disabled && selected === option.value}
                         onClick={() => {
-                            if(selected === option.value || disabled) return;
+                            if (selected === option.value) return;
                             setSelected(option.value);
                             onOptionChange(option.value);
                             clickSound();
                         }}
                     >
-                        {option.display}
+                        <p>{option.display}</p>
                     </ToggleOption>
                 ))}
             </OptionsWrapper>
-        </Toggle>
-    )
+        </Toggle> : null}
+    </>)
 }
 
-export default ToggleButton;
+export default LanguageToggle;
