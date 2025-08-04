@@ -23,7 +23,7 @@ const GlobalStyle = createGlobalStyle<{ appTheme: AppThemeType }>`
         user-select: none;
     }
 
-    p {
+    p, li {
         font-family: ${theme.fontFamily.paragraf};
         font-size: ${theme.fontSize.mediumParagraf};
         font-weight: ${theme.fontWeight.regular};

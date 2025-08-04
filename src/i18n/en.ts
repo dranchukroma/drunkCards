@@ -34,6 +34,45 @@ export const en = {
       ],
     },
   },
+  rules: {
+    mainTitle: '🎴Game Rules',
+    goal: {
+      title: "🌬️ Goal:",
+      paragraphs: [
+        "Draw cards, follow the instructions, and try to survive till the end (if there is one)."
+      ]
+    },
+    howToPlay: {
+      title: "🔷 How to Play:",
+      paragraphs: [
+        "On your turn, draw one card from the deck.",
+        "Perform the action written on the card.",
+        "After that, discard the card — your turn is over.",
+        "The next player draws a card and the game continues."
+      ]
+    },
+    gameModes: {
+      title: "🔄 Game Modes:",
+      paragraphs: [
+        "Endless Deck — cards can repeat infinitely.",
+        "36-Card Deck — classic short deck (6 to Ace).",
+        "52-Card Deck — full standard deck."
+      ]
+    },
+    gameDuration: {
+      title: "⏰ Game Duration:",
+      paragraphs: [
+        "Endless — play as long as you want.",
+        "Custom Time Limit — set the duration before the game begins."
+      ]
+    },
+    footer: {
+      lines: [
+        "Let the chaos begin.",
+        "Will you make it to the end?"
+      ]
+    }
+  },
   settings: {
     cardLimit: "Card limit",
     cardLimitTooltip:

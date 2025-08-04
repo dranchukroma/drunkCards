@@ -34,6 +34,42 @@ export const pl = {
       ],
     },
   },
+  rules: {
+    mainTitle: '🎴Zasady gry',
+    goal: {
+      title: "🌬️ Cel:",
+      paragraphs: [
+        "Dobieraj karty, wykonuj instrukcje i spróbuj przetrwać do końca (jeśli taki istnieje).",
+      ],
+    },
+    howToPlay: {
+      title: "🔷 Jak grać:",
+      paragraphs: [
+        "W swojej turze dobierz jedną kartę z talii.",
+        "Wykonaj działanie zapisane na karcie.",
+        "Następnie odrzuć kartę — twoja tura się kończy.",
+        "Następny gracz dobiera kartę i gra toczy się dalej.",
+      ],
+    },
+    gameModes: {
+      title: "🔄 Tryby gry:",
+      paragraphs: [
+        "Talia bez końca — karty mogą się powtarzać w nieskończoność.",
+        "Talia 36 kart — klasyczna krótka talia (od 6 do Asa).",
+        "Talia 52 karty — pełna standardowa talia.",
+      ],
+    },
+    gameDuration: {
+      title: "⏰ Czas gry:",
+      paragraphs: [
+        "Bez limitu — graj ile chcesz.",
+        "Własny limit czasu — ustaw czas trwania przed rozpoczęciem gry.",
+      ],
+    },
+    footer: {
+      lines: ["Niech rozpocznie się chaos.", "Czy dotrwasz do końca?"],
+    },
+  },
   settings: {
     cardLimit: "Limit kart",
     cardLimitTooltip:
