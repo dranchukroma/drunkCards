@@ -85,6 +85,10 @@ export const en = {
     soundsTooltip: "Toggle sound effects on or off.",
     background: "theme",
     backgroundTooltip: "Choose a theme for the game.",
+    backgroundSonner: {
+      sonnerText: 'Refresh the page to see all changes!',
+      buttonLabel: 'Refresh',
+    },
     multiLanguage: "Multi language",
     multiLanguageTooltip:
       "Allows players to switch rules language during the game.",

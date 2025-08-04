@@ -85,6 +85,10 @@ export const uk = {
     soundsTooltip: "Увімкнути або вимкнути звукові ефекти.",
     background: "Тема",
     backgroundTooltip: "Виберіть тему для гри.",
+    backgroundSonner: {
+      sonnerText: 'Оновіть сторінку, щоб побачити всі зміни!',
+      buttonLabel: 'Оновити',
+    },
     multiLanguage: "Багато мовність",
     multiLanguageTooltip: "Дозволяє гравцям змінювати мову правил під час гри.",
     gameSetUp: "Настройка гри",

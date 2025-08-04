@@ -33,7 +33,7 @@ function ToggleButton<T extends string | number | boolean | ReactNode>({
                 {options.map((option, index) => (
                     <ToggleOption
                         key={index}
-                        $bgColor={style.appTheme.uiSelected}
+                        $appTheme={style.appTheme}
                         $active={!disabled && selected === option.value}
                         onClick={() => {
                             if(selected === option.value || disabled) return;

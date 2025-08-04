@@ -1,7 +1,6 @@
-import theme from "@styles/theme";
 import styled from "styled-components";
 
-export const ArrowContainer = styled.div`
+export const ArrowContainer = styled.div<{$hoverColor: string}>`
   padding: 10px;
   border-radius: 7px;
   position: absolute;
@@ -19,6 +18,6 @@ export const ArrowContainer = styled.div`
   }
 
   &:hover {
-    background-color: ${theme.appTheme.bg1.toggleBackground};
+    background-color: ${({$hoverColor}) => $hoverColor};
   }
 `

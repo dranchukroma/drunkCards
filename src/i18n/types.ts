@@ -47,6 +47,10 @@ export type TranslationSchema = {
     soundsTooltip: string;
     background: string;
     backgroundTooltip: string;
+    backgroundSonner: {
+      sonnerText: string;
+      buttonLabel: string;
+    }
     multiLanguage: string;
     multiLanguageTooltip: string;
     gameSetUp: string;

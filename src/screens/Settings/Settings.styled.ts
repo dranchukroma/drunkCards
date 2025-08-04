@@ -43,6 +43,11 @@ export const ToggleTooltip = styled.div<{ color: string }>`
   align-items: center;
   border-radius: 50%;
   border: 2px solid ${({ color }) => color};
+  transition: opacity ease 0.3s;
+
+  &:hover{
+    opacity: 0.7;
+  }
 
   &::after {
     content: "i";

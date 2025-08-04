@@ -11,7 +11,7 @@ function NativeArrow() {
 
     return (
         <>{visible
-            ? <ArrowContainer onClick={() => {
+            ? <ArrowContainer $hoverColor={style.appTheme.uiSelected} onClick={() => {
                 onClick();
                 clickSound();
             }}>

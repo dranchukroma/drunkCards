@@ -83,6 +83,10 @@ export const pl = {
     soundsTooltip: "Włącz lub wyłącz efekty dźwiękowe.",
     background: "Motyw",
     backgroundTooltip: "Ustaw motyw gry.",
+    backgroundSonner: {
+      sonnerText: 'Odśwież stronę, aby zobaczyć wszystkie zmiany!',
+      buttonLabel: 'Odśwież',
+    },
     multiLanguage: "Wiele języczność",
     multiLanguageTooltip: "Pozwala graczom zmieniać język zasad w trakcie gry.",
     gameSetUp: "Konfiguracja gry",
