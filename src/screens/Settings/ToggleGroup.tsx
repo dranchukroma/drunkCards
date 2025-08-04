@@ -1,7 +1,6 @@
 import { InfoWrapper, ToggleLabel, ToggleTooltip, ToggleGroupContainer } from "./Settings.styled";
 import { useSettings } from "@providers/SettingProvider";
 import ToggleButton, { type OptionsType } from "@components/Toggle/ToggleButton";
-import { useEffect } from "react";
 
 type ToggleGroupType<T extends string | number | boolean> = {
     label: string;

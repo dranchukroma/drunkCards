@@ -5,17 +5,17 @@ import { useNavigate } from "react-router-dom";
 import { useSettings } from "@providers/SettingProvider";
 import { useNativeArrow } from "@providers/NativeArrowProvider";
 import { useEffect } from "react";
+import { usePwaRedirect } from "./usePwaRedirect";
 
 export function Menu() {
+    usePwaRedirect();
     const { translations } = useLanguage();
     const { style, game } = useSettings();
     const appTheme = style.appTheme
     const { hide } = useNativeArrow();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        hide();
-    }, []);
+    useEffect(() => hide(), [hide]);
 
     return (
         <MenuWrapper>

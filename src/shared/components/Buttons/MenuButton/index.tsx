@@ -6,14 +6,15 @@ import useSoundEffect from "@hooks/useSoundEffect";
 type MenuButtonProps = {
     children: ReactNode,
     onClick: () => void,
+    className?: string,
 }
 
-function MenuButton({ children, onClick }: MenuButtonProps) {
+function MenuButton({ children, onClick, className }: MenuButtonProps) {
     const { style } = useSettings();
     const clickSound = useSoundEffect('/sounds/soft-click.wav')
 
     return (
-        <StyledButtonContainer onClick={() => {
+        <StyledButtonContainer className={className} onClick={() => {
             onClick();
             clickSound();
         }}

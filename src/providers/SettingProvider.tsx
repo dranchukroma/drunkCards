@@ -57,11 +57,13 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
         return defaultValue;
     }
 
+    const userLang = (navigator.language || navigator.languages[0]).split("-")[0];
+
     const [settings, setSettings] = useState({
-        language: setDefaultString('language', 'en') as LanguageCode,
+        language: setDefaultString('language', userLang) as LanguageCode,
         multiLanguage: setDefaultBoolean('multiLanguage', true),
-        sounds: setDefaultBoolean('sounds', true),
-        music: setDefaultBoolean('music', true),
+        sounds: setDefaultBoolean('sounds', false),
+        music: setDefaultBoolean('music', false),
         background: setDefaultString('background', 'bg1'),
         limitTime: setDefaultNumber('limitTime', 90),
         limitCards: setDefaultNumber('limitCards', 36),

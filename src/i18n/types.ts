@@ -1,5 +1,18 @@
 import { i18n } from "i18n";
 
+export type PwaTranslationStructure = {
+    label: string;
+    skip: string;
+    iOS: {
+        NotSafari: string[];
+        Safari: string[];
+    }
+    Android: {
+        Supported: string[];
+        notSupported: string[];
+    }
+};
+
 export type TranslationSchema = {
     menu: {
         logoLabel: string;
@@ -7,6 +20,7 @@ export type TranslationSchema = {
         rulesCTA: string;
         settingsCTA: string;
     };
+    pwa: PwaTranslationStructure;
     settings: {
         cardLimit: string;
         cardLimitTooltip: string;

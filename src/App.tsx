@@ -14,7 +14,6 @@ import { Toaster } from 'sonner';
 
 function App() {
   const { style } = useSettings();
-  const appTheme = style.appTheme;
 
   useEffect(() => {
     const metaTheme = document.querySelector('meta[name="theme-color"]');
@@ -37,7 +36,7 @@ function App() {
         <Route path='/game' element={<Game />} />
         <Route path='/PwaInstall' element={<PwaInstall />} />
       </Routes>
-      <Toaster visibleToasts={1} position={'bottom-center'} closeButton/>
+      <Toaster visibleToasts={1} mobileOffset={50} position={'bottom-center'} closeButton/>
     </BrowserRouter>
   );
 }
