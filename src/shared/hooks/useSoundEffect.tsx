@@ -1,20 +1,27 @@
 import { useSettings } from "@providers/SettingProvider";
 import { useEffect, useRef } from "react";
+import { Howl } from 'howler'
 
 const useSoundEffect = (src: string) => {
-    const { audio } = useSettings(); // прапорець звуку
-    const audioRef = useRef<HTMLAudioElement | null>(null);
+    const { audio } = useSettings(); // { sounds: boolean }
+    const soundRef = useRef<Howl | null>(null);
 
     useEffect(() => {
-        audioRef.current = new Audio(src);
-        audioRef.current.volume = 0.3;
-        audioRef.current.preload = 'auto';
+        soundRef.current = new Howl({
+            src: [src],
+            volume: 0.3,
+            preload: true,
+            html5: true // Це краще для мобільних/PWA, особливо на iOS
+        });
+
+        return () => {
+            soundRef.current?.unload(); // звільнити пам’ять при зміні src
+        };
     }, [src]);
 
     const play = () => {
-        if (audio.sounds && audioRef.current) {
-            audioRef.current.currentTime = 0;
-            audioRef.current.play().catch(() => { });
+        if (audio.sounds && soundRef.current) {
+            soundRef.current.play();
         }
     };
 
