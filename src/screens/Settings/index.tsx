@@ -36,13 +36,6 @@ export function Settings() {
                 onOptionChange={(option) => audio.setSounds(option)}
             />
             <ToggleGroup
-                label={translations.settings.multiLanguage}
-                onTooltip={() => toast.info(translations.settings.multiLanguageTooltip)}
-                options={toggleOptions.booleanOptions}
-                defaultOption={language.multiLanguage}
-                onOptionChange={(option) => language.setMultiLanguage(option)}
-            />
-            <ToggleGroup
                 label={translations.settings.gameSetUp}
                 onTooltip={() => toast.info(translations.settings.gameSetUpTooltip)}
                 options={toggleOptions.booleanOptions}
@@ -64,6 +57,14 @@ export function Settings() {
                 options={toggleOptions.timeLimit}
                 defaultOption={game.limitTime}
                 onOptionChange={(option) => game.setLimitTime(option)}
+            />
+            <ToggleGroup
+                disabled={game.gameSetup}
+                label={translations.settings.multiLanguage}
+                onTooltip={() => toast.info(translations.settings.multiLanguageTooltip)}
+                options={toggleOptions.booleanOptions}
+                defaultOption={language.multiLanguage}
+                onOptionChange={(option) => language.setMultiLanguage(option)}
             />
             <ToggleGroup
                 label={translations.settings.language}
