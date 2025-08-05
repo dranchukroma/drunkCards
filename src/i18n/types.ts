@@ -25,6 +25,11 @@ export type TranslationSchema = {
     rulesCTA: string;
     settingsCTA: string;
   };
+  setup: {
+    title: string;
+    paragraphs: string[];
+    play: string;
+  }
   pwa: PwaTranslationStructure;
   rules: {
     mainTitle: string;

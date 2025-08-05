@@ -7,7 +7,7 @@ import { useLanguage } from "@providers/LanguageProvider";
 import ToggleGroup from "./ToggleGroup";
 import ThemeToggle from "@components/Toggle/ThemeToggle";
 import { toast } from "sonner";
-import { getToggletOptions } from "./toggleOptions";
+import { getToggletOptions } from "../../shared/utils/toggleOptions";
 
 export function Settings() {
     const { audio, game, language, style } = useSettings()

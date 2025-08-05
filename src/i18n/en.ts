@@ -5,6 +5,16 @@ export const en = {
     rulesCTA: "Rules",
     settingsCTA: "Settings",
   },
+  setup: {
+    title: "🎮 Game Setup",
+    paragraphs: [
+      "Before you start, customize the game to match your group.",
+      "You can choose a card limit, set a time duration, or play without any limits.",
+      "If multi-language mode is enabled, each player will see the task on the card in their selected language.",
+      "Ready to start? Let the madness begin!"
+    ],
+    play: "Play",
+  },
   pwa: {
     label:
       "For the best experience, add this game to your home screen. It will open faster, work offline, and feel like a real app.",

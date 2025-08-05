@@ -5,6 +5,16 @@ export const pl = {
     rulesCTA: "Zasady",
     settingsCTA: "Ustawienia",
   },
+  setup: {
+    title: "🎮 Ustawienia gry",
+    paragraphs: [
+      "Zanim zaczniesz, dostosuj grę do swojej grupy.",
+      "Możesz ustawić limit kart, czas trwania gry lub grać bez ograniczeń.",
+      "Jeśli tryb wielojęzyczny jest włączony — każdy gracz zobaczy zadanie na karcie w wybranym języku.",
+      "Gotowi? Niech zacznie się szaleństwo!"
+    ],
+    play: "Graj",
+  },
   pwa: {
     label:
       "Aby grało się wygodniej, dodaj tę grę do ekranu głównego. Będzie otwierać się szybciej, działać offline i wyglądać jak prawdziwa aplikacja.",
