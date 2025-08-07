@@ -4,6 +4,7 @@ import { Howl } from 'howler'
 
 const useSoundEffect = (src: string) => {
     const { audio } = useSettings(); // { sounds: boolean }
+    if(!audio.sounds) return;
     const soundRef = useRef<Howl | null>(null);
 
     useEffect(() => {

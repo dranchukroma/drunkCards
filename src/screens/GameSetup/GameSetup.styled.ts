@@ -5,7 +5,15 @@ import MenuButton from "@components/Buttons/MenuButton";
 
 export const SetUpWrapper = styled(ScreenWrapper)<{ $color: string }>`
   color: ${({ $color }) => $color};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 `;
+
+export const InfoContainer = styled.div`
+  width: 100%;
+`
 
 export const Title = styled.h2`
   font-weight: ${theme.fontWeight.bold};
@@ -27,11 +35,10 @@ export const ToggleLabel = styled.p<{ $shadows: string }>`
 `;
 
 export const ToggleGroupContainer = styled.div`
-    margin-top: 20px;
+    margin: 0 auto;
 `;
 
 export const PlayButton = styled(MenuButton)`
   font-size: ${theme.fontSize.mediumParagraf};
   width: 300px;
-  margin-top: 20px;
 `;

@@ -1,17 +1,15 @@
 import { useLanguage } from "@providers/LanguageProvider";
-import { Description, PlayButton, SetUpWrapper, Title, ToggleGroupContainer, ToggleLabel } from "./GameSetup.styled";
+import { Description, InfoContainer, PlayButton, SetUpWrapper, Title, ToggleGroupContainer, ToggleLabel } from "./GameSetup.styled";
 import { useNativeArrow } from "@providers/NativeArrowProvider";
 import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSettings } from "@providers/SettingProvider";
 import ToggleButton from "@components/Toggle/ToggleButton";
 import { getToggletOptions } from "shared/utils/toggleOptions";
+import { initialGame } from "@screens/Game/initialGame";
+import { useGameStore } from "storage/gameStorage";
 
-type GameSetupProps = {
-
-}
-
-export function GameSetup({ }: GameSetupProps) {
+export function GameSetup() {
     const navigate = useNavigate();
     const { show } = useNativeArrow();
     const { translations } = useLanguage();
@@ -19,11 +17,15 @@ export function GameSetup({ }: GameSetupProps) {
 
     const toggleOptions = useMemo(() => getToggletOptions(translations), [translations]);
 
-    useEffect(() => show(() => navigate(-1)), [navigate]);
+    const setDeck = useGameStore.getState().setDeck
+
+    useEffect(() => show(() => navigate('/')), [navigate]);
     return (
         <SetUpWrapper $color={style.appTheme.fontColor}>
-            <Title>{translations.setup.title}</Title>
-            {translations.setup.paragraphs.map((p, i) => <Description key={i}>{p}</Description>)}
+            <InfoContainer>
+                <Title>{translations.setup.title}</Title>
+                {translations.setup.paragraphs.map((p, i) => <Description key={i}>{p}</Description>)}
+            </InfoContainer>
             <ToggleGroupContainer>
                 <ToggleLabel $shadows={style.appTheme.textShadow}>
                     {translations.settings.cardLimit}
@@ -54,7 +56,7 @@ export function GameSetup({ }: GameSetupProps) {
                     onOptionChange={(option) => language.setMultiLanguage(option)}
                 />
             </ToggleGroupContainer >
-            <PlayButton onClick={() => navigate('/game')}>
+            <PlayButton onClick={() => initialGame(game.limitCards, navigate, setDeck)}>
                 {translations.setup.play}
             </PlayButton>
         </SetUpWrapper >
