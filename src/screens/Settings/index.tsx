@@ -53,11 +53,27 @@ export function Settings() {
             />
             <ToggleGroup
                 disabled={game.gameSetup}
+                label={"Infinity cards"} // to change
+                onTooltip={() => toast.info('Infinity cards')} // to change
+                options={toggleOptions.booleanOptions}
+                defaultOption={game.infinityCards}
+                onOptionChange={(option) => game.setInfinityCards(option)}
+            />
+            <ToggleGroup
+                disabled={game.gameSetup}
                 label={translations.settings.limitTime}
                 onTooltip={() => toast.info(translations.settings.limitTimeTooltip)}
                 options={toggleOptions.timeLimit}
                 defaultOption={game.limitTime}
                 onOptionChange={(option) => game.setLimitTime(option)}
+            />
+            <ToggleGroup
+                disabled={game.gameSetup}
+                label={"Infinity limit"} // to change
+                onTooltip={() => toast.info('Infinity limit')} // to change
+                options={toggleOptions.booleanOptions}
+                defaultOption={game.infinityTime}
+                onOptionChange={(option) => game.setInfinityTime(option)}
             />
             <ToggleGroup
                 disabled={game.gameSetup}

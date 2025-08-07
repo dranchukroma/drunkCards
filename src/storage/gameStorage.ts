@@ -5,7 +5,7 @@ export type GameState = {
     deck: CardType[];
     currentCardIndex: number;
     infinityCards: boolean;
-    infinityTime: boolean;
+    setInfinityCards: (infinityCards: boolean) => void;
     setDeck: (deck: CardType[]) => void;
     nextCard: () => void;
     resetGame: () => void;
@@ -13,9 +13,9 @@ export type GameState = {
 
 export const useGameStore = create<GameState>((set) => ({
     deck: [],
-    currentCardIndex: 0,
+    currentCardIndex: 50,
     infinityCards: false,
-    infinityTime: false,
+    setInfinityCards: (infinityCards) => set({ infinityCards }),
     setDeck: (deck) => set({ deck }),
     nextCard: () => set((state) => ({
       currentCardIndex: state.currentCardIndex + 1

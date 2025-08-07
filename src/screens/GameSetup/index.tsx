@@ -20,6 +20,7 @@ export function GameSetup() {
     const toggleOptions = useMemo(() => getToggletOptions(translations), [translations]);
 
     const setDeck = useGameStore.getState().setDeck
+    const setInfinityCards = useGameStore.getState().setInfinityCards
 
     useEffect(() => show(() => navigate('/')), [navigate]);
     return (
@@ -47,12 +48,32 @@ export function GameSetup() {
             </ToggleGroupContainer>
             <ToggleGroupContainer>
                 <ToggleLabel $shadows={style.appTheme.textShadow}>
+                    {"Infinity cards"}
+                </ToggleLabel>
+                <ToggleButton
+                    options={toggleOptions.booleanOptions}
+                    defaultOption={game.infinityCards}
+                    onOptionChange={(option) => game.setInfinityCards(option)}
+                />
+            </ToggleGroupContainer>
+            <ToggleGroupContainer>
+                <ToggleLabel $shadows={style.appTheme.textShadow}>
                     {translations.settings.limitTime}
                 </ToggleLabel>
                 <ToggleButton
                     options={toggleOptions.timeLimit}
                     defaultOption={game.limitTime}
                     onOptionChange={(option) => game.setLimitTime(option)}
+                />
+            </ToggleGroupContainer>
+            <ToggleGroupContainer>
+                <ToggleLabel $shadows={style.appTheme.textShadow}>
+                    {"Infinity time"}
+                </ToggleLabel>
+                <ToggleButton
+                    options={toggleOptions.booleanOptions}
+                    defaultOption={game.infinityTime}
+                    onOptionChange={(option) => game.setInfinityTime(option)}
                 />
             </ToggleGroupContainer>
             <ToggleGroupContainer>
@@ -65,7 +86,7 @@ export function GameSetup() {
                     onOptionChange={(option) => language.setMultiLanguage(option)}
                 />
             </ToggleGroupContainer >
-            <PlayButton onClick={() => initialGame(game.limitCards, navigate, setDeck)}>
+            <PlayButton onClick={() => initialGame(game.limitCards, navigate, setDeck, () => setInfinityCards(game.infinityCards))}>
                 {translations.setup.play}
             </PlayButton>
         </SetUpWrapper >

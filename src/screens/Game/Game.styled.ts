@@ -8,6 +8,10 @@ export const GameWrapper = styled(ScreenWrapper)`
   align-items: center;
   justify-content: space-between;
   height: calc(100vh - 80px);
+
+  > :last-child {
+    padding-bottom: 30px;
+  }
 `;
 
 export const CardWrapper = styled.div<{ $zIndex: number }>`
@@ -38,8 +42,7 @@ export const CardInner = styled.div<{
       : $flipped
       ? "rotateY(180deg)"
       : "none"}; */
-  transform: ${({ $flipped }) =>
-    $flipped ? "rotateY(180deg)" : "none"};
+  transform: ${({ $flipped }) => ($flipped ? "rotateY(180deg)" : "none")};
 `;
 
 export const CardStyles = css<{ $bgColor: string; $color: string }>`
@@ -76,6 +79,4 @@ export const CardsLeft = styled.div<{ $color: string }>`
   }
 `;
 
-export const LangWidgetContainer = styled.div`
-  padding-bottom: 30px;
-`;
+export const LangWidgetContainer = styled.div``;

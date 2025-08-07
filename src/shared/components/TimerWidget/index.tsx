@@ -1,6 +1,7 @@
 import { useSettings } from "@providers/SettingProvider";
 import { ProgressBar, TimeLeft, TimerContainer } from "./TimerWidget.styled";
 import { useEffect, useState } from "react";
+import Infinity from "@components/Icons/Infinity";
 
 type TimerWidgetProps = {
     gameMinutes: number;
@@ -14,10 +15,10 @@ type TimeLeft = {
     seconds: string;
 }
 function TimerWidget({ gameMinutes, showEndGameModal, startTimer }: TimerWidgetProps) {
-    const { style } = useSettings();
+    const { style, game } = useSettings();
     const gameSeconds = gameMinutes * 60;
     const [secondsLeft, setSecondsLeft] = useState(gameSeconds);
-    const progress = ((gameSeconds - secondsLeft) / gameSeconds) * 100;
+    const progress = game.infinityTime ? 100 : (((gameSeconds - secondsLeft) / gameSeconds) * 100);
 
     const formatTimePart = (n: number) => String(n).padStart(2, '0');
 
@@ -36,7 +37,7 @@ function TimerWidget({ gameMinutes, showEndGameModal, startTimer }: TimerWidgetP
     const [timeLeft, setTimeLeft] = useState<TimeLeft>(() => getTimeLeft(gameSeconds));
 
     useEffect(() => {
-        if (!startTimer) return;
+        if (!startTimer || game.infinityTime) return;
         const interval = setInterval(() => {
             setSecondsLeft((prev) => {
                 if (prev <= 1) {
@@ -65,7 +66,7 @@ function TimerWidget({ gameMinutes, showEndGameModal, startTimer }: TimerWidgetP
                 $progressColor={style.appTheme.uiSelected}
             />
             <TimeLeft $color={style.appTheme.fontColor}>
-                {timeLeft.hours}:{timeLeft.minutes}:{timeLeft.seconds}
+                {game.infinityTime ? <Infinity /> : (timeLeft.hours + ':' + timeLeft.minutes + ':' + timeLeft.seconds)}
             </TimeLeft>
         </TimerContainer>
     )

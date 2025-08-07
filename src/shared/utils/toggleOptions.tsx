@@ -10,13 +10,11 @@ export const getToggletOptions = (t: TranslationSchema) => {
         cardLimit: [
             { display: '36', value: 36 },
             { display: '52', value: 52, },
-            { display: <Infinity />, value: -1, },
         ],
         timeLimit: [
             { display: '30', value: 30 },
             { display: '60', value: 60, },
             { display: '90', value: 90, },
-            { display: <Infinity />, value: -1, },
         ],
         language: [
             { display: <FlagEn />, value: "en" },

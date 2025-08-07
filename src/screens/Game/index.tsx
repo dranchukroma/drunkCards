@@ -11,6 +11,7 @@ import ToggleButton from "@components/Toggle/ToggleButton";
 import TimerWidget from "@components/TimerWidget";
 import Card from "./Card";
 import { generateDeck } from "shared/utils/generateDeck";
+import Infinity from "@components/Icons/Infinity";
 
 export function Game() {
     const navigate = useNavigate();
@@ -27,25 +28,29 @@ export function Game() {
 
     // Use navigate arrow
     const { show } = useNativeArrow();
-    useEffect(() => show(() => navigate('/setup')), [navigate]);
+    useEffect(() => show(() => gameEndModal()), [navigate]);
 
     const {
         deck,
         currentCardIndex,
         nextCard,
-        setDeck
+        setDeck,
+        infinityCards,
+        setInfinityCards,
+        resetGame,
     } = useGameStore();
 
     // Recreate deck if it is empty
     useEffect(() => {
         if (deck.length === 0) {
             setDeck(generateDeck(game.limitCards));
+            setInfinityCards(game.infinityCards);
         }
     }, [deck.length, game.limitCards, setDeck]);
 
     // Gamin states
     const [startTimer, setStartTimer] = useState(false);
-    const [cardUsed, setCardUsed] = useState(0);
+    const [cardUsed, setCardUsed] = useState(50);
     const [isCardFliped, setIsCardFliped] = useState(false);
     const [isSlidingOut, setIsSlidingOut] = useState(false);
     const [isCardAnimating, setIsCardAnimating] = useState(false)
@@ -75,8 +80,22 @@ export function Game() {
         setIsCardFliped(false);
         setTimeout(() => {
             nextCard();
-            setCardUsed((prev) => prev + 1);
+            setCardUsed((prev) => {
+                const newCount = prev + 1;
+                if (newCount >= deck.length) {
+                    if (game.infinityCards) {
+                        resetGame();
+                        setDeck(generateDeck(game.limitCards));
+                        return game.limitCards;
+                    } else {
+                        gameEndModal();
+                    }
+                }
+                return newCount;
+            });
+
             setIsCardAnimating(false);
+
         }, 1000);
     }, [isCardAnimating, nextCard]);
 
@@ -102,16 +121,16 @@ export function Game() {
             />
 
             <CardsLeft $color={style.appTheme.fontColor}>
-                <p>{deck.length - cardUsed} {translations.game.cardLeft}</p>
+                {infinityCards ? <Infinity /> : <p>{deck.length - cardUsed} {translations.game.cardLeft}</p>}
             </CardsLeft>
 
-            <LangWidgetContainer>
+            {language.multiLanguage && (<LangWidgetContainer>
                 <ToggleButton
                     options={flags}
                     defaultOption={language.language}
                     onOptionChange={language.setLanguage}
                 />
-            </LangWidgetContainer>
+            </LangWidgetContainer>)}
         </GameWrapper>
     )
 }

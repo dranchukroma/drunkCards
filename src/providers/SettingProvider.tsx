@@ -17,6 +17,10 @@ type SettingsContextType = {
         limitTime: number;
         setLimitCards: (value: number) => void;
         limitCards: number;
+        setInfinityTime: (value: boolean) => void;
+        infinityTime: boolean;
+        setInfinityCards: (value: boolean) => void;
+        infinityCards: boolean;
     },
     language: {
         setLanguage: (value: LanguageCode) => void;
@@ -67,6 +71,8 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
         background: setDefaultString('background', 'bg1'),
         limitTime: setDefaultNumber('limitTime', 90),
         limitCards: setDefaultNumber('limitCards', 36),
+        infinityTime: setDefaultBoolean('infinityTime', false),
+        infinityCards: setDefaultBoolean('infinityCards', false),
         gameSetup: setDefaultBoolean('gameSetup', true),
     })
 
@@ -93,6 +99,10 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
             limitTime: settings.limitTime,
             setLimitCards: (newValue: number) => setNewSettingValue('limitCards', newValue),
             limitCards: settings.limitCards,
+            setInfinityTime: (newValue: boolean) => setNewSettingValue('infinityTime', newValue),
+            infinityTime: settings.infinityTime,
+            setInfinityCards: (newValue: boolean) => setNewSettingValue('infinityCards', newValue),
+            infinityCards: settings.infinityCards,
         },
         language: {
             setLanguage: (newValue: LanguageCode) => setNewSettingValue('language', newValue),
