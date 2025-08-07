@@ -14,6 +14,7 @@ export const pl = {
       "Gotowi? Niech zacznie się szaleństwo!"
     ],
     play: "Graj",
+    setupScreen: "Ekran konfiguracji może być wyłączony w ustawieniach",
   },
   pwa: {
     label:

@@ -1,5 +1,5 @@
 import { useLanguage } from "@providers/LanguageProvider";
-import { Description, InfoContainer, PlayButton, SetUpWrapper, Title, ToggleGroupContainer, ToggleLabel } from "./GameSetup.styled";
+import { Description, InfoContainer, PlayButton, SetUpWrapper, Title, TitleWrapper, ToggleGroupContainer, ToggleLabel } from "./GameSetup.styled";
 import { useNativeArrow } from "@providers/NativeArrowProvider";
 import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,8 @@ import ToggleButton from "@components/Toggle/ToggleButton";
 import { getToggletOptions } from "shared/utils/toggleOptions";
 import { initialGame } from "@screens/Game/initialGame";
 import { useGameStore } from "storage/gameStorage";
+import Tooltip from "@components/Tooltip";
+import { toast } from "sonner";
 
 export function GameSetup() {
     const navigate = useNavigate();
@@ -23,7 +25,14 @@ export function GameSetup() {
     return (
         <SetUpWrapper $color={style.appTheme.fontColor}>
             <InfoContainer>
-                <Title>{translations.setup.title}</Title>
+                <TitleWrapper>
+                    <Title>{translations.setup.title}</Title>
+                    <Tooltip
+                        color={style.appTheme.fontColor}
+                        onClick={() => toast.info(translations.setup.setupScreen)}
+                    />
+                </TitleWrapper>
+
                 {translations.setup.paragraphs.map((p, i) => <Description key={i}>{p}</Description>)}
             </InfoContainer>
             <ToggleGroupContainer>
@@ -48,7 +57,7 @@ export function GameSetup() {
             </ToggleGroupContainer>
             <ToggleGroupContainer>
                 <ToggleLabel $shadows={style.appTheme.textShadow}>
-                    {translations.settings.limitTime}
+                    {translations.settings.multiLanguage}
                 </ToggleLabel>
                 <ToggleButton
                     options={toggleOptions.booleanOptions}

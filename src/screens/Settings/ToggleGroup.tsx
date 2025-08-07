@@ -1,7 +1,8 @@
-import { InfoWrapper, ToggleLabel, ToggleTooltip, ToggleGroupContainer } from "./Settings.styled";
+import { InfoWrapper, ToggleLabel, ToggleGroupContainer } from "./Settings.styled";
 import { useSettings } from "@providers/SettingProvider";
 import ToggleButton, { type OptionsType } from "@components/Toggle/ToggleButton";
 import type { ReactNode } from "react";
+import Tooltip from "@components/Tooltip";
 
 type ToggleGroupType<T extends string | number | boolean | ReactNode> = {
     label: string;
@@ -26,8 +27,9 @@ function ToggleGroup<
             >
                 {label}
             </ToggleLabel>
-            <ToggleTooltip
+            <Tooltip
                 color={appTheme.fontColor}
+                disabled={disabled}
                 onClick={() => {
                     if (disabled || !onTooltip) return;
                     onTooltip();

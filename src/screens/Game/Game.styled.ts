@@ -38,7 +38,7 @@ export const CardInner = styled.div<{
       : $flipped
       ? "rotateY(180deg)"
       : "none"}; */
-  transform: ${({ $flipped, $slight }) =>
+  transform: ${({ $flipped }) =>
     $flipped ? "rotateY(180deg)" : "none"};
 `;
 

@@ -35,23 +35,3 @@ export const ToggleLabel = styled.p<{ color: string; $shadows: string }>`
   text-shadow: ${({ $shadows }) => $shadows};
 `;
 
-export const ToggleTooltip = styled.div<{ color: string }>`
-  height: 26px;
-  width: 26px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  border: 2px solid ${({ color }) => color};
-  transition: opacity ease 0.3s;
-
-  &:hover{
-    opacity: 0.7;
-  }
-
-  &::after {
-    content: "i";
-    font-family: ${theme.fontFamily.paragraf};
-    color: ${({ color }) => color};
-  }
-`;

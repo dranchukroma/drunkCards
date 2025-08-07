@@ -1,5 +1,5 @@
 import { useNativeArrow } from "@providers/NativeArrowProvider";
-import { InfoWrapper, SettingWrapper, ToggleLabel, ToggleTooltip } from "./Settings.styled";
+import { InfoWrapper, SettingWrapper, ToggleLabel } from "./Settings.styled";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useMemo } from "react";
 import { useSettings } from "@providers/SettingProvider";
@@ -8,6 +8,7 @@ import ToggleGroup from "./ToggleGroup";
 import ThemeToggle from "@components/Toggle/ThemeToggle";
 import { toast } from "sonner";
 import { getToggletOptions } from "../../shared/utils/toggleOptions";
+import Tooltip from "@components/Tooltip";
 
 export function Settings() {
     const { audio, game, language, style } = useSettings()
@@ -80,7 +81,7 @@ export function Settings() {
                 >
                     {translations.settings.background}
                 </ToggleLabel>
-                <ToggleTooltip
+                <Tooltip
                     color={style.appTheme.fontColor}
                     onClick={() => toast.info(translations.settings.backgroundTooltip)}
                 />

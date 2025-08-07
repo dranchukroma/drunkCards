@@ -14,6 +14,7 @@ export const en = {
       "Ready to start? Let the madness begin!"
     ],
     play: "Play",
+    setupScreen: "Game setup screen can be disabled in settings",
   },
   pwa: {
     label:

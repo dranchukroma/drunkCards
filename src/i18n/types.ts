@@ -29,6 +29,7 @@ export type TranslationSchema = {
     title: string;
     paragraphs: string[];
     play: string;
+    setupScreen: string;
   }
   pwa: PwaTranslationStructure;
   rules: {
