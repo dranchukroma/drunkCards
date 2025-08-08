@@ -129,5 +129,9 @@ export const en = {
     },
     cardLeft: "card left",
     gameEnd: "Game finished, would you like to play again?",
+    CtaPlayAgain: 'Play',
+    CtaFinishGame: 'Main menu',
+    EndGameModalTitle: '🎉 Game Over',
+    EndGameModalDescrition: 'The round has ended! You can start a new game or return to the main menu.',
   },
 };

@@ -13,7 +13,7 @@ export type GameState = {
 
 export const useGameStore = create<GameState>((set) => ({
     deck: [],
-    currentCardIndex: 50,
+    currentCardIndex: 0,
     infinityCards: false,
     setInfinityCards: (infinityCards) => set({ infinityCards }),
     setDeck: (deck) => set({ deck }),

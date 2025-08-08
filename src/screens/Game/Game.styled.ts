@@ -20,7 +20,7 @@ export const CardWrapper = styled.div<{ $zIndex: number }>`
   aspect-ratio: 2 / 3;
   border-radius: 10px;
   perspective: 1800px;
-  z-index: ${({ $zIndex }) => $zIndex || 1};
+  /* z-index: ${({ $zIndex }) => $zIndex || 1}; */
 `;
 
 export const CardInner = styled.div<{

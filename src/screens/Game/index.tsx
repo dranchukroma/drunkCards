@@ -12,6 +12,7 @@ import TimerWidget from "@components/TimerWidget";
 import Card from "./Card";
 import { generateDeck } from "shared/utils/generateDeck";
 import Infinity from "@components/Icons/Infinity";
+import { Modal } from "@components/Modal";
 
 export function Game() {
     const navigate = useNavigate();
@@ -28,7 +29,7 @@ export function Game() {
 
     // Use navigate arrow
     const { show } = useNativeArrow();
-    useEffect(() => show(() => gameEndModal()), [navigate]);
+    useEffect(() => show(() => showModal()), [navigate]);
 
     const {
         deck,
@@ -50,10 +51,11 @@ export function Game() {
 
     // Gamin states
     const [startTimer, setStartTimer] = useState(false);
-    const [cardUsed, setCardUsed] = useState(50);
+    const [cardUsed, setCardUsed] = useState(0);
     const [isCardFliped, setIsCardFliped] = useState(false);
     const [isSlidingOut, setIsSlidingOut] = useState(false);
-    const [isCardAnimating, setIsCardAnimating] = useState(false)
+    const [isCardAnimating, setIsCardAnimating] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const flags = getToggletOptions(translations).language;
 
@@ -84,11 +86,10 @@ export function Game() {
                 const newCount = prev + 1;
                 if (newCount >= deck.length) {
                     if (game.infinityCards) {
-                        resetGame();
-                        setDeck(generateDeck(game.limitCards));
+                        playAgain()
                         return game.limitCards;
                     } else {
-                        gameEndModal();
+                        showModal()
                     }
                 }
                 return newCount;
@@ -99,14 +100,25 @@ export function Game() {
         }, 1000);
     }, [isCardAnimating, nextCard]);
 
-    const gameEndModal = () => {
+    const showModal = () => {
+        setStartTimer(false);
+        setIsModalOpen(true);
+    }
 
+    const playAgain = () => {
+        resetGame();
+        setCardUsed(0);
+        setDeck(generateDeck(game.limitCards));
+    }
+
+    const endGame = () => {
+        navigate('/');
     }
     return (
         <GameWrapper>
             <TimerWidget
                 gameMinutes={game.limitTime}
-                showEndGameModal={gameEndModal}
+                showEndGameModal={() => showModal()}
                 startTimer={startTimer}
             />
 
@@ -117,7 +129,7 @@ export function Game() {
                 hideCard={hideCard}
                 showCard={showCard}
                 card={deck[currentCardIndex]}
-                zIndex={1}
+                zIndex={0}
             />
 
             <CardsLeft $color={style.appTheme.fontColor}>
@@ -131,6 +143,17 @@ export function Game() {
                     onOptionChange={language.setLanguage}
                 />
             </LangWidgetContainer>)}
+
+            <Modal
+                open={isModalOpen}
+                onOpenChange={setIsModalOpen}
+                title={translations.game.EndGameModalTitle}
+                description={translations.game.EndGameModalDescrition}
+                onConfirm={playAgain}
+                onCancel={endGame}
+                btn1Test={translations.game.CtaPlayAgain}
+                btn2Test={translations.game.CtaFinishGame}
+            />
         </GameWrapper>
     )
 }

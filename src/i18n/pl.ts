@@ -127,5 +127,9 @@ export const pl = {
     },
     cardLeft: "kart zostało",
     gameEnd: "Koniec gry, gramy jeszcze raz?",
+    CtaPlayAgain: 'Graj',
+    CtaFinishGame: 'Główne menu',
+    EndGameModalTitle: '🎉 Koniec gry',
+    EndGameModalDescrition: 'Runda dobiegła końca! Możesz rozpocząć nową grę lub wrócić do menu głównego.',
   },
 };

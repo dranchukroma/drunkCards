@@ -85,6 +85,10 @@ export type TranslationSchema = {
     };
     cardLeft: string;
     gameEnd: string;
+    CtaPlayAgain: string;
+    CtaFinishGame: string;
+    EndGameModalTitle: string;
+    EndGameModalDescrition: string;
   };
 };
 
