@@ -17,7 +17,7 @@ export function Modal({ open, onOpenChange, title, description, btn1Test, btn2Te
     const { style } = useSettings();
 
     return (
-        <Dialog.Root open={open} onOpenChange={onOpenChange}>
+        <Dialog.Root open={open}>
             <Dialog.Portal>
                 <Overlay />
                 <Content
@@ -32,7 +32,7 @@ export function Modal({ open, onOpenChange, title, description, btn1Test, btn2Te
                             variant="secondary"
                             onClick={() => {
                                 onCancel?.();
-                                onOpenChange(false);
+                                onOpenChange(false); // To change
                             }}
                         >
                             {btn2Test}
@@ -41,7 +41,7 @@ export function Modal({ open, onOpenChange, title, description, btn1Test, btn2Te
                             variant="primary"
                             onClick={() => {
                                 onConfirm?.();
-                                onOpenChange(false);
+                                onOpenChange(false);  // To change
                             }}
                         >
                             {btn1Test}

@@ -29,17 +29,27 @@ export function Game() {
 
     // Use navigate arrow
     const { show } = useNativeArrow();
-    useEffect(() => show(() => showModal()), [navigate]);
+    useEffect(() => show(() => setPhase('modal')), [navigate]);
 
     const {
         deck,
         currentCardIndex,
         nextCard,
+        phase,
+        setPhase,
         setDeck,
         infinityCards,
         setInfinityCards,
         resetGame,
     } = useGameStore();
+
+    const [cardFlipped, setCardFlipped] = useState<boolean>(false)
+
+    useEffect(() => {
+        if(phase === 'flipping'){
+            setCardFlipped((prev) => !prev);
+        }
+    }, [phase]);
 
     // Recreate deck if it is empty
     useEffect(() => {
@@ -47,85 +57,49 @@ export function Game() {
             setDeck(generateDeck(game.limitCards));
             setInfinityCards(game.infinityCards);
         }
-    }, [deck.length, game.limitCards, setDeck]);
+    }, [deck.length, game.limitCards]);
 
-    // Gamin states
-    const [startTimer, setStartTimer] = useState(false);
-    const [cardUsed, setCardUsed] = useState(0);
-    const [isCardFliped, setIsCardFliped] = useState(false);
-    const [isSlidingOut, setIsSlidingOut] = useState(false);
-    const [isCardAnimating, setIsCardAnimating] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const flags = getToggletOptions(translations).language;
-
+    // useEffect(() => console.log(phase), [phase]);
 
     const showCard = useCallback(() => {
-        if (isCardAnimating) return;
-        setIsCardAnimating(true);
-
-        if (!startTimer) {
-            setStartTimer(true);
-        }
-        setIsCardFliped(true);
+        if (phase === 'flipping') return;
+        setPhase('flipping');
 
         setTimeout(() => {
-            setIsCardAnimating(false);
+            setPhase('waitingForMove');
         }, 1000);
-    }, [startTimer, isCardAnimating]);
+    }, [phase]);
 
     const hideCard = useCallback(() => {
-        if (isCardAnimating) return;
-        setIsCardAnimating(true);
-
-        setIsSlidingOut(true);
-        setIsCardFliped(false);
+        if (phase !== 'waitingForMove') return;
+        setPhase('flipping');
         setTimeout(() => {
-            nextCard();
-            setCardUsed((prev) => {
-                const newCount = prev + 1;
-                if (newCount >= deck.length) {
-                    if (game.infinityCards) {
-                        playAgain()
-                        return game.limitCards;
-                    } else {
-                        showModal()
-                    }
+            if ((currentCardIndex + 1) >= deck.length) {
+                if (game.infinityCards) {
+                    playAgain()
+                } else {
+                    setPhase('modal');
                 }
-                return newCount;
-            });
-
-            setIsCardAnimating(false);
-
+            } else {
+                nextCard();
+                setPhase('waitingForMove');
+            }
         }, 1000);
-    }, [isCardAnimating, nextCard]);
-
-    const showModal = () => {
-        setStartTimer(false);
-        setIsModalOpen(true);
-    }
+    }, [phase]);
 
     const playAgain = () => {
         resetGame();
-        setCardUsed(0);
         setDeck(generateDeck(game.limitCards));
     }
 
-    const endGame = () => {
-        navigate('/');
-    }
     return (
         <GameWrapper>
-            <TimerWidget
-                gameMinutes={game.limitTime}
-                showEndGameModal={() => showModal()}
-                startTimer={startTimer}
-            />
+            <TimerWidget gameMinutes={0.1}/>
 
             <Card
                 appTheme={style.appTheme}
-                isCardFliped={isCardFliped}
-                isSlidingOut={isSlidingOut}
+                isCardFliped={cardFlipped}
+                isSlidingOut={false}
                 hideCard={hideCard}
                 showCard={showCard}
                 card={deck[currentCardIndex]}
@@ -133,24 +107,29 @@ export function Game() {
             />
 
             <CardsLeft $color={style.appTheme.fontColor}>
-                {infinityCards ? <Infinity /> : <p>{deck.length - cardUsed} {translations.game.cardLeft}</p>}
+                {infinityCards ? <Infinity /> : <p>{deck.length - (currentCardIndex)} {translations.game.cardLeft}</p>}
             </CardsLeft>
 
             {language.multiLanguage && (<LangWidgetContainer>
                 <ToggleButton
-                    options={flags}
+                    options={getToggletOptions(translations).language}
                     defaultOption={language.language}
                     onOptionChange={language.setLanguage}
                 />
             </LangWidgetContainer>)}
 
             <Modal
-                open={isModalOpen}
-                onOpenChange={setIsModalOpen}
+                open={phase === 'modal'}
+                onOpenChange={() => {}} // To change
+                // onOpenChange={setIsModalOpen}
                 title={translations.game.EndGameModalTitle}
                 description={translations.game.EndGameModalDescrition}
                 onConfirm={playAgain}
-                onCancel={endGame}
+                onCancel={() => {
+                    setPhase('idle');
+                    resetGame();
+                    navigate('/');
+                }}
                 btn1Test={translations.game.CtaPlayAgain}
                 btn2Test={translations.game.CtaFinishGame}
             />

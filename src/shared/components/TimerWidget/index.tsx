@@ -2,11 +2,10 @@ import { useSettings } from "@providers/SettingProvider";
 import { ProgressBar, TimeLeft, TimerContainer } from "./TimerWidget.styled";
 import { useEffect, useState } from "react";
 import Infinity from "@components/Icons/Infinity";
+import { useGameStore } from "storage/gameStorage";
 
 type TimerWidgetProps = {
     gameMinutes: number;
-    showEndGameModal: () => void;
-    startTimer: boolean;
 }
 
 type TimeLeft = {
@@ -14,7 +13,10 @@ type TimeLeft = {
     minutes: string;
     seconds: string;
 }
-function TimerWidget({ gameMinutes, showEndGameModal, startTimer }: TimerWidgetProps) {
+function TimerWidget({ gameMinutes }: TimerWidgetProps) {
+    const phase = useGameStore.getState().phase;
+    const setPhase = useGameStore.getState().setPhase;
+
     const { style, game } = useSettings();
     const gameSeconds = gameMinutes * 60;
     const [secondsLeft, setSecondsLeft] = useState(gameSeconds);
@@ -37,12 +39,16 @@ function TimerWidget({ gameMinutes, showEndGameModal, startTimer }: TimerWidgetP
     const [timeLeft, setTimeLeft] = useState<TimeLeft>(() => getTimeLeft(gameSeconds));
 
     useEffect(() => {
-        if (!startTimer || game.infinityTime) return;
+        if (
+            phase === 'idle' || 
+            phase === 'modal' || 
+            phase === 'ended' || 
+            game.infinityTime) return;
         const interval = setInterval(() => {
             setSecondsLeft((prev) => {
                 if (prev <= 1) {
                     clearInterval(interval);
-                    showEndGameModal();
+                    setPhase('modal');
                     return 0;
                 }
                 return prev - 1;
@@ -50,7 +56,7 @@ function TimerWidget({ gameMinutes, showEndGameModal, startTimer }: TimerWidgetP
         }, 1000);
 
         return () => clearInterval(interval);
-    }, [startTimer]);
+    }, [phase]);
 
     useEffect(() => {
         setTimeLeft(getTimeLeft(secondsLeft));
