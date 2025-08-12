@@ -119,7 +119,6 @@ export function Game() {
     }, []);
 
     const cardsLeft = useMemo(() => Math.max(deck.length - currentCardIndex, 0), [deck.length, currentCardIndex]);
-    const currentCard = deck[currentCardIndex]; // може бути undefined при ініціалізації — Card це витримає
 
     return (
         <GameWrapper>
