@@ -1,7 +1,7 @@
 import { useNativeArrow } from "@providers/NativeArrowProvider";
 import { LangWidgetContainer, GameWrapper, CardsLeft } from "./Game.styled";
 import { useNavigate } from "react-router-dom";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { getGamingMode } from "shared/utils/gamingMode";
 import { useGameStore } from "storage/gameStorage";
 import { getToggletOptions } from "shared/utils/toggleOptions";
@@ -19,17 +19,18 @@ export function Game() {
     const { translations } = useLanguage();
     const { language, game, style } = useSettings();
 
-    // Go to set up if isGameStarted is not true
+    // якщо гру не стартували — переведемо на сетап
     const isGameStarted = getGamingMode();
     useEffect(() => {
-        if (!isGameStarted) {
-            navigate('/setup');
-        }
-    }, [isGameStarted, navigate]);
+        if (!isGameStarted) navigate("/setup");
+    }, [, navigate]);
 
-    // Use navigate arrow
+    // нативна “стрілка назад”: при натисканні — завершуємо гру
     const { show } = useNativeArrow();
-    useEffect(() => show(() => setPhase('modal')), [navigate]);
+    useEffect(() => {
+        const dispose = show(() => setPhase('ended'));
+        return dispose;
+      }, []); 
 
     const {
         deck,
@@ -43,91 +44,128 @@ export function Game() {
         resetGame,
     } = useGameStore();
 
-    const [cardFlipped, setCardFlipped] = useState<boolean>(false)
+    const [cardFlipped, setCardFlipped] = useState<boolean>(false);
+    const [resetTimer, setResetTimer] = useState<boolean>(false);
 
+    // контролюємо таймаути, аби чистити при анмаунті/зміні фази
+    const timeoutRef = useRef<number | null>(null);
+    const clearTimer = () => {
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+            timeoutRef.current = null;
+        }
+    };
+
+    // flip від фази
     useEffect(() => {
-        if(phase === 'flipping'){
+        if (phase === 'flipping') {
             setCardFlipped((prev) => !prev);
         }
     }, [phase]);
 
-    // Recreate deck if it is empty
+    // ініціалізація колоди
     useEffect(() => {
         if (deck.length === 0) {
             setDeck(generateDeck(game.limitCards));
             setInfinityCards(game.infinityCards);
         }
-    }, [deck.length, game.limitCards]);
+    }, [deck.length, game.limitCards, game.infinityCards, setDeck, setInfinityCards]);
 
-    // useEffect(() => console.log(phase), [phase]);
-
+    // показати поточну картку (flip вперед)
     const showCard = useCallback(() => {
-        if (phase === 'flipping') return;
-        setPhase('flipping');
-
-        setTimeout(() => {
-            setPhase('waitingForMove');
+        if (phase === "flipping") return;
+        setPhase("flipping");
+        clearTimer();
+        timeoutRef.current = window.setTimeout(() => {
+            setPhase("waitingForMove");
+            timeoutRef.current = null;
         }, 1000);
-    }, [phase]);
+    }, [phase, setPhase]);
 
+    // сховати картку (flip назад) і перейти до наступної/фіналу
     const hideCard = useCallback(() => {
-        if (phase !== 'waitingForMove') return;
-        setPhase('flipping');
-        setTimeout(() => {
-            if ((currentCardIndex + 1) >= deck.length) {
+        if (phase !== "waitingForMove") return;
+        setPhase("flipping");
+        clearTimer();
+        timeoutRef.current = window.setTimeout(() => {
+            const isLast = currentCardIndex + 1 >= deck.length;
+
+            if (isLast) {
                 if (game.infinityCards) {
-                    playAgain()
+                    playAgain();
                 } else {
-                    setPhase('modal');
+                    setPhase("ended");
                 }
             } else {
                 nextCard();
-                setPhase('waitingForMove');
+                setPhase("waitingForMove");
             }
+            timeoutRef.current = null;
         }, 1000);
-    }, [phase]);
+    }, [phase, currentCardIndex, deck.length, game.infinityCards, nextCard, setPhase]);
 
-    const playAgain = () => {
+
+    const playAgain = useCallback(() => {
+        clearTimer();
         resetGame();
         setDeck(generateDeck(game.limitCards));
-    }
+        setResetTimer(true);
+        setCardFlipped(false); // 🔧 важливо: повертаємо у вихідний стан
+        setPhase("idle");
+    }, [game.limitCards, resetGame, setDeck, setPhase]);
+
+    useEffect(() => {
+        return () => clearTimer(); // cleanup on unmount
+    }, []);
+
+    const cardsLeft = useMemo(() => Math.max(deck.length - currentCardIndex, 0), [deck.length, currentCardIndex]);
+    const currentCard = deck[currentCardIndex]; // може бути undefined при ініціалізації — Card це витримає
 
     return (
         <GameWrapper>
-            <TimerWidget gameMinutes={0.1}/>
+            <TimerWidget
+                gameMinutes={game.limitTime}
+                resetTimer={resetTimer}
+                setResetTimer={setResetTimer}
+            />
 
             <Card
                 appTheme={style.appTheme}
-                isCardFliped={cardFlipped}
-                isSlidingOut={false}
+                isCardFlipped={cardFlipped}
                 hideCard={hideCard}
                 showCard={showCard}
                 card={deck[currentCardIndex]}
-                zIndex={0}
             />
 
             <CardsLeft $color={style.appTheme.fontColor}>
-                {infinityCards ? <Infinity /> : <p>{deck.length - (currentCardIndex)} {translations.game.cardLeft}</p>}
+                {infinityCards ? <Infinity /> : <p>{cardsLeft} {translations.game.cardLeft}</p>}
             </CardsLeft>
 
-            {language.multiLanguage && (<LangWidgetContainer>
-                <ToggleButton
-                    options={getToggletOptions(translations).language}
-                    defaultOption={language.language}
-                    onOptionChange={language.setLanguage}
-                />
-            </LangWidgetContainer>)}
+            {language.multiLanguage && (
+                <LangWidgetContainer>
+                    <ToggleButton
+                        options={getToggletOptions(translations).language}
+                        defaultOption={language.language}
+                        onOptionChange={language.setLanguage}
+                    />
+                </LangWidgetContainer>
+            )}
 
             <Modal
-                open={phase === 'modal'}
-                onOpenChange={() => {}} // To change
-                // onOpenChange={setIsModalOpen}
+                open={phase === 'ended'}
+                onOpenChange={(open) => {
+                    // якщо користувач закрив модалку свайпом/бекдропом
+                    if (!open) {
+                        setPhase("idle");
+                    }
+                }}
                 title={translations.game.EndGameModalTitle}
                 description={translations.game.EndGameModalDescrition}
                 onConfirm={playAgain}
                 onCancel={() => {
                     setPhase('idle');
                     resetGame();
+                    setCardFlipped(false);
                     navigate('/');
                 }}
                 btn1Test={translations.game.CtaPlayAgain}

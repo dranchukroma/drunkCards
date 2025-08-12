@@ -14,34 +14,24 @@ export const GameWrapper = styled(ScreenWrapper)`
   }
 `;
 
-export const CardWrapper = styled.div<{ $zIndex: number }>`
+export const CardWrapper = styled.div`
   height: 70%;
   max-width: ${theme.breakpoints.maxWidth};
   aspect-ratio: 2 / 3;
   border-radius: 10px;
   perspective: 1800px;
-  /* z-index: ${({ $zIndex }) => $zIndex || 1}; */
 `;
 
 export const CardInner = styled.div<{
   $flipped: boolean;
   $shadows: string;
-  $slight: boolean;
 }>`
   position: relative;
   width: 100%;
   height: 100%;
-
   transition: transform 1s;
   transform-style: preserve-3d;
   box-shadow: ${({ $shadows }) => $shadows};
-
-  /* transform: ${({ $flipped, $slight }) =>
-    $slight
-      ? "translateX(150%) rotateY(180deg)" // або 150% для повного зникнення
-      : $flipped
-      ? "rotateY(180deg)"
-      : "none"}; */
   transform: ${({ $flipped }) => ($flipped ? "rotateY(180deg)" : "none")};
 `;
 

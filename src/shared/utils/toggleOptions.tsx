@@ -3,7 +3,6 @@ import FlagPl from 'i18n/langIcons/FlagPl'
 import FlagEn from 'i18n/langIcons/FlagEn'
 import FlagUk from 'i18n/langIcons/FlagUk'
 import type { ReactNode } from "react"
-import Infinity from "@components/Icons/Infinity"
 
 export const getToggletOptions = (t: TranslationSchema) => {
     return {

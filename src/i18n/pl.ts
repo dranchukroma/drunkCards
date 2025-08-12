@@ -109,7 +109,7 @@ export const pl = {
     noOption: "Nie",
   },
   game: {
-    showCard: "Show card",
+    showCard: "Pokaż kartę",
     cardAction: {
       c2: "Rule 2",
       c3: "Rule 3",
