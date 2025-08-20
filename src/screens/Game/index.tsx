@@ -2,7 +2,6 @@ import { useNativeArrow } from "@providers/NativeArrowProvider";
 import { LangWidgetContainer, GameWrapper, CardsLeft } from "./Game.styled";
 import { useNavigate } from "react-router-dom";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { getGamingMode } from "shared/utils/gamingMode";
 import { useGameStore } from "storage/gameStorage";
 import { getToggletOptions } from "shared/utils/toggleOptions";
 import { useLanguage } from "@providers/LanguageProvider";
@@ -19,9 +18,8 @@ export function Game() {
     const { translations } = useLanguage();
     const { language, game, style } = useSettings();
 
-    const isGameStarted = getGamingMode();
     useEffect(() => {
-        if (!isGameStarted) navigate("/setup");
+        if (game.gamingMode) navigate("/setup");
     }, [, navigate]);
 
     const { show } = useNativeArrow();

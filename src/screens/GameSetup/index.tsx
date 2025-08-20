@@ -86,7 +86,7 @@ export function GameSetup() {
                     onOptionChange={(option) => language.setMultiLanguage(option)}
                 />
             </ToggleGroupContainer >
-            <PlayButton onClick={() => initialGame(game.limitCards, navigate, setDeck, () => setInfinityCards(game.infinityCards))}>
+            <PlayButton onClick={() => initialGame(game.limitCards, navigate, setDeck, () => setInfinityCards(game.infinityCards), game.setGamingMode)}>
                 {translations.setup.play}
             </PlayButton>
         </SetUpWrapper >

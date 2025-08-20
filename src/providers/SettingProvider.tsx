@@ -21,6 +21,8 @@ type SettingsContextType = {
         infinityTime: boolean;
         setInfinityCards: (value: boolean) => void;
         infinityCards: boolean;
+        setGamingMode: (value: boolean) => void;
+        gamingMode: boolean;
     },
     language: {
         setLanguage: (value: LanguageCode) => void;
@@ -74,6 +76,7 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
         infinityTime: setDefaultBoolean('infinityTime', false),
         infinityCards: setDefaultBoolean('infinityCards', false),
         gameSetup: setDefaultBoolean('gameSetup', true),
+        gamingMode: setDefaultBoolean('gamingMode', false),
     })
 
     function setNewSettingValue(key: string, newValue: string | boolean | number) {
@@ -103,6 +106,8 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
             infinityTime: settings.infinityTime,
             setInfinityCards: (newValue: boolean) => setNewSettingValue('infinityCards', newValue),
             infinityCards: settings.infinityCards,
+            setGamingMode: (newValue: boolean) => setNewSettingValue('gamingMode', newValue),
+            gamingMode: settings.gamingMode,
         },
         language: {
             setLanguage: (newValue: LanguageCode) => setNewSettingValue('language', newValue),

@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import { Wrapper } from "./ScreenWrapper.styled";
 import { useEffect, type ReactNode } from "react";
 import { useGameStore } from "storage/gameStorage";
-import { setGamingMode } from "shared/utils/gamingMode";
+import { useSettings } from "@providers/SettingProvider";
 
 type ScreenWrapperProps = {
     children: ReactNode,
@@ -11,6 +11,7 @@ type ScreenWrapperProps = {
 
 function ScreenWrapper({ children, className }: ScreenWrapperProps) {
     const { resetGame } = useGameStore()
+    const { game } = useSettings();
     const location = useLocation();
 
     const allowedGamingPath = ['/game']
@@ -18,7 +19,7 @@ function ScreenWrapper({ children, className }: ScreenWrapperProps) {
     useEffect(() => {
         if (!allowedGamingPath.includes(location.pathname)) {
             resetGame();
-            setGamingMode(false);
+            game.setGamingMode(false);
         }
     }, [location]);
 

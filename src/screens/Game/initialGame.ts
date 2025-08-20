@@ -1,4 +1,3 @@
-import { setGamingMode } from "shared/utils/gamingMode";
 import { generateDeck, type CardType } from "shared/utils/generateDeck";
 
 export const initialGame = (
@@ -6,7 +5,8 @@ export const initialGame = (
   navigate: (path: string) => void,
   setNewDeck: (newDeck: CardType[]) => void,
   setInfinityCards: (value: boolean) => void, // 🔒 уточнений тип
-  infinity = false,                            // зручно передати явно
+  setGamingMode: (value: boolean) => void, // 🔒 уточнений тип
+  infinity = false,                          // зручно передати явно
 ) => {
   setGamingMode(true);
   const deck = generateDeck(cards);
