@@ -4,7 +4,14 @@ import FlagEn from 'i18n/langIcons/FlagEn'
 import FlagUk from 'i18n/langIcons/FlagUk'
 import type { ReactNode } from "react"
 
-export const getToggletOptions = (t: TranslationSchema) => {
+type Option<T> = { display: ReactNode; value: T}
+
+export const getToggletOptions = (t: TranslationSchema): {
+    cardLimit: Option<number>[];
+    timeLimit: Option<number>[];
+    language: Option<LanguageCode>[];
+    booleanOptions: Option<boolean>[];
+} => {
     return {
         cardLimit: [
             { display: '36', value: 36 },
