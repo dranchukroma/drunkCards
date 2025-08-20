@@ -133,5 +133,8 @@ export const en = {
     CtaFinishGame: 'Main menu',
     EndGameModalTitle: '🎉 Game Over',
     EndGameModalDescrition: 'The round has ended! You can start a new game or return to the main menu.',
+    CtaUnpause: "Continue playing",
+    PauseGameModalTitle: "⏸️ Do you want to pause the game?",
+    PauseGameModalDescrition: "If you go back now, the current game will end. You can either continue playing or return to the main menu."
   },
 };

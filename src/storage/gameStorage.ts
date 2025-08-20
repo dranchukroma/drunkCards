@@ -1,7 +1,7 @@
 import type { CardType } from "shared/utils/generateDeck";
 import { create } from "zustand";
 
-export type GamePhase = 'idle' | 'waitingForMove' | 'flipping' | 'ended';
+export type GamePhase = 'idle' | 'waitingForMove' | 'flipping' | 'paused' | 'ended';
 
 export type GameState = {
   deck: CardType[];

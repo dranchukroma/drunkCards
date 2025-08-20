@@ -9,11 +9,11 @@ type ModalProps = {
     description?: string;
     onConfirm?: () => void;
     onCancel?: () => void;
-    btn1Test: string;
-    btn2Test: string;
+    confirmButton: string;
+    cancelButton: string;
 };
 
-export function Modal({ open, onOpenChange, title, description, btn1Test, btn2Test, onConfirm, onCancel }: ModalProps) {
+export function Modal({ open, onOpenChange, title, description, confirmButton, cancelButton, onConfirm, onCancel }: ModalProps) {
     const { style } = useSettings();
 
     return (
@@ -35,7 +35,7 @@ export function Modal({ open, onOpenChange, title, description, btn1Test, btn2Te
                                 onOpenChange(false); // To change
                             }}
                         >
-                            {btn2Test}
+                            {cancelButton}
                         </Button>
                         <Button
                             variant="primary"
@@ -44,7 +44,7 @@ export function Modal({ open, onOpenChange, title, description, btn1Test, btn2Te
                                 onOpenChange(false);  // To change
                             }}
                         >
-                            {btn1Test}
+                            {confirmButton}
                         </Button>
                     </ButtonRow>
                 </Content>

@@ -131,5 +131,8 @@ export const pl = {
     CtaFinishGame: 'Główne menu',
     EndGameModalTitle: '🎉 Koniec gry',
     EndGameModalDescrition: 'Runda dobiegła końca! Możesz rozpocząć nową grę lub wrócić do menu głównego.',
+    CtaUnpause: "Kontynuuj grę",
+    PauseGameModalTitle: "⏸️ Chcesz przerwać grę?",
+    PauseGameModalDescrition: "Jeśli teraz wrócisz, bieżąca rozgrywka zakończy się. Możesz kontynuować grę lub wrócić do menu głównego."
   },
 };

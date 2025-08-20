@@ -72,7 +72,7 @@ function TimerWidget({ gameMinutes, resetTimer, setResetTimer }: TimerWidgetProp
         const id = window.setInterval(() => {
             const currentPhase = phaseRef.current;
             // у "idle"/"ended" не тікаємо час (паузимо)
-            if (currentPhase === "idle" || currentPhase === "ended") return;
+            if (currentPhase === "idle" || currentPhase === "ended" || currentPhase === 'paused') return;
 
             setSecondsLeft((prev) => {
                 if (prev <= 1) {

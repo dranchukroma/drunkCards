@@ -19,18 +19,16 @@ export function Game() {
     const { translations } = useLanguage();
     const { language, game, style } = useSettings();
 
-    // якщо гру не стартували — переведемо на сетап
     const isGameStarted = getGamingMode();
     useEffect(() => {
         if (!isGameStarted) navigate("/setup");
     }, [, navigate]);
 
-    // нативна “стрілка назад”: при натисканні — завершуємо гру
     const { show } = useNativeArrow();
     useEffect(() => {
-        const dispose = show(() => setPhase('ended'));
+        const dispose = show(() => setPhase('paused'));
         return dispose;
-      }, []); 
+    }, []);
 
     const {
         deck,
@@ -73,6 +71,8 @@ export function Game() {
 
     // показати поточну картку (flip вперед)
     const showCard = useCallback(() => {
+        console.log('showCard');
+
         if (phase === "flipping") return;
         setPhase("flipping");
         clearTimer();
@@ -84,6 +84,8 @@ export function Game() {
 
     // сховати картку (flip назад) і перейти до наступної/фіналу
     const hideCard = useCallback(() => {
+        console.log(phase);
+
         if (phase !== "waitingForMove") return;
         setPhase("flipping");
         clearTimer();
@@ -151,24 +153,19 @@ export function Game() {
             )}
 
             <Modal
-                open={phase === 'ended'}
-                onOpenChange={(open) => {
-                    // якщо користувач закрив модалку свайпом/бекдропом
-                    if (!open) {
-                        setPhase("idle");
-                    }
-                }}
-                title={translations.game.EndGameModalTitle}
-                description={translations.game.EndGameModalDescrition}
-                onConfirm={playAgain}
+                open={phase === 'ended' || phase === 'paused'}
+                onOpenChange={(open) => { if (!open) setPhase("waitingForMove") }}
+                title={phase === 'paused' ? translations.game.PauseGameModalTitle : translations.game.EndGameModalTitle}
+                description={phase === 'paused' ? translations.game.PauseGameModalDescrition : translations.game.EndGameModalDescrition}
+                onConfirm={phase === 'paused' ? () => { setPhase('waitingForMove') } : playAgain}
                 onCancel={() => {
                     setPhase('idle');
                     resetGame();
                     setCardFlipped(false);
                     navigate('/');
                 }}
-                btn1Test={translations.game.CtaPlayAgain}
-                btn2Test={translations.game.CtaFinishGame}
+                confirmButton={phase === 'paused' ? translations.game.CtaUnpause : translations.game.CtaPlayAgain}
+                cancelButton={translations.game.CtaFinishGame}
             />
         </GameWrapper>
     )

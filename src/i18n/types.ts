@@ -89,6 +89,9 @@ export type TranslationSchema = {
     CtaFinishGame: string;
     EndGameModalTitle: string;
     EndGameModalDescrition: string;
+    CtaUnpause: string;
+    PauseGameModalTitle: string;
+    PauseGameModalDescrition: string;
   };
 };
 
