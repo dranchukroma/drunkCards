@@ -9,6 +9,8 @@ export type CardType = {
     suit: Suit; 
 }
 
+export type CardNumber = 2|3|4|5|6|7|8|9|10|11|12|13|14;
+
 const suits: Suit[] = ['hearts', 'diamonds', 'clubs', 'spades'];
 
 export const generateDeck = (totalCards: number): CardType[] => {

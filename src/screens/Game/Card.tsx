@@ -1,6 +1,6 @@
 import type { AppThemeType } from "@styles/theme";
-import { CardBack, CardFront, CardInner, CardRank, CardWrapper, RankContainer, Suit } from "./Game.styled";
-import type { CardType } from "shared/utils/generateDeck";
+import { CardBack, CardFront, CardInner, CardRank, CardRule, CardWrapper, RankContainer, Suit } from "./Game.styled";
+import type { CardNumber, CardType } from "shared/utils/generateDeck";
 import { useLanguage } from "@providers/LanguageProvider";
 import Diamonds from "@components/Icons/Diamonds";
 import Clubs from "@components/Icons/Clubs";
@@ -16,10 +16,10 @@ type CardProps = {
     card?: CardType;
 };
 
-function Card({ appTheme, isCardFlipped, card = {cardNumber: 14, suit: 'diamonds'}, hideCard, showCard }: CardProps) {
+function Card({ appTheme, isCardFlipped, card = { cardNumber: 14, suit: 'diamonds' }, hideCard, showCard }: CardProps) {
     const { translations } = useLanguage();
 
-    const cardColor = (suit: string) : string => {
+    const cardColor = (suit: string): string => {
         switch (suit) {
             case 'diamonds': return 'red';
             case 'clubs': return 'black';
@@ -64,9 +64,9 @@ function Card({ appTheme, isCardFlipped, card = {cardNumber: 14, suit: 'diamonds
                         <CardRank>{rank(card?.cardNumber)}</CardRank>
                         <Suit>{suit(card?.suit, cardColor(card?.suit))}</Suit>
                     </RankContainer>
-
-                    <p>{card ? `${card.cardNumber} ${card.suit}` : "—"}</p>
-
+                    <CardRule $color={cardColor(card?.suit)}>
+                        {translations.game.cardAction[`c${card?.cardNumber as CardNumber}`]}
+                    </CardRule>
                     <RankContainer $position={'bottom'} $color={cardColor(card?.suit)}>
                         <CardRank>{rank(card?.cardNumber)}</CardRank>
                         <Suit>{suit(card?.suit, cardColor(card?.suit))}</Suit>

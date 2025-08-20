@@ -91,3 +91,10 @@ export const CardRank = styled.div`
   font-family: 'Montagu Slab', serif;
 `;
 
+export const CardRule = styled(CardRank)<{$color: string}>`
+  color: ${({$color}) => $color};
+  font-size: ${theme.fontSize.smallHeading};
+  text-align: center;
+  padding: 0 3%;
+`
+
