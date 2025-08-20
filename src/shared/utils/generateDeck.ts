@@ -2,7 +2,7 @@ import { shuffleDeck } from "./shuffle";
 
 shuffleDeck
 
-type Suit = 'hearts' | 'diamonds' | 'clubs' | 'spades';
+export type Suit = 'hearts' | 'diamonds' | 'clubs' | 'spades';
 
 export type CardType = {
     cardNumber: number;

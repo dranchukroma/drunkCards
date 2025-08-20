@@ -86,7 +86,7 @@ function TimerWidget({ gameMinutes, resetTimer, setResetTimer }: TimerWidgetProp
         }, 1000);
 
         return () => clearInterval(id);
-    }, [game.infinityTime, setPhase, gameSeconds]);
+    }, [game.infinityTime, setPhase, gameSeconds, resetTimer]);
     // примітка: коли gameSeconds зміниться, інтервал перезапуститься коректно
 
     // форматування кожного тіку

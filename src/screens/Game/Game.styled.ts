@@ -70,3 +70,24 @@ export const CardsLeft = styled.div<{ $color: string }>`
 `;
 
 export const LangWidgetContainer = styled.div``;
+
+export const RankContainer = styled.div<{ $position: string; $color: string }>`
+  position: absolute;
+  ${({ $position }) => ($position === "top" ? "top: 20px" : "bottom: 20px")};
+  ${({ $position }) => ($position === "top" ? "left: 20px" : "right: 20px")};
+  transform: ${({ $position }) => $position === 'bottom' ? 'rotate(180deg)' : ''};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  color: ${({$color}) => $color};
+`;
+export const Suit = styled.div`
+  transform: scale(1.3);
+`;
+
+export const CardRank = styled.div`
+  font-size: ${theme.fontSize.mediumHeading};
+  font-family: 'Montagu Slab', serif;
+`;
+
