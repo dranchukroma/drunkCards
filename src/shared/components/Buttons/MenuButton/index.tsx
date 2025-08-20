@@ -11,12 +11,12 @@ type MenuButtonProps = {
 
 function MenuButton({ children, onClick, className }: MenuButtonProps) {
     const { style } = useSettings();
-    const clickSound = useSoundEffect('/sounds/soft-click.wav')
+    const clickSound = useSoundEffect('/sounds/soft-click.wav');
 
     return (
         <StyledButtonContainer className={className} onClick={() => {
-            onClick();
             clickSound();
+            setTimeout(onClick, 150); // 120–200 мс зазвичай достатньо
         }}
             $appTheme={style.appTheme}
         >

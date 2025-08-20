@@ -1,30 +1,38 @@
+import { useCallback, useEffect, useRef } from "react";
+import { Howl } from "howler";
 import { useSettings } from "@providers/SettingProvider";
-import { useEffect, useRef } from "react";
-import { Howl } from 'howler'
 
 const useSoundEffect = (src: string) => {
-    const { audio } = useSettings(); // { sounds: boolean }
-    if(!audio.sounds) return () => {};
+    const { audio } = useSettings();
     const soundRef = useRef<Howl | null>(null);
 
     useEffect(() => {
-        soundRef.current = new Howl({
+        if (!audio.sounds) {
+            soundRef.current?.unload();
+            soundRef.current = null;
+            return;
+        }
+
+        const howl = new Howl({
             src: [src],
             volume: 0.3,
             preload: true,
-            html5: true // Це краще для мобільних/PWA, особливо на iOS
         });
+        soundRef.current = howl;
 
         return () => {
-            soundRef.current?.unload(); // звільнити пам’ять при зміні src
+            howl.unload();
+            soundRef.current = null;
         };
-    }, [src]);
+    }, [src, audio.sounds]);
 
-    const play = () => {
-        if (audio.sounds && soundRef.current) {
-            soundRef.current.play();
-        }
-    };
+    const play = useCallback(() => {
+        const howl = soundRef.current;
+        if (!audio.sounds || !howl) return;
+        try {
+            howl.play();
+        } catch { }
+    }, [audio.sounds]);
 
     return play;
 };
