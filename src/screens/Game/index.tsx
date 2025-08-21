@@ -123,7 +123,7 @@ export function Game() {
     return (
         <GameWrapper>
             <TimerWidget
-                gameMinutes={0.1}
+                gameMinutes={game.limitTime}
                 resetTimer={resetTimer}
                 setResetTimer={setResetTimer}
             />
