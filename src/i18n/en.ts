@@ -94,7 +94,7 @@ export const en = {
     musicTooltip: "Toggle background music on or off.",
     sounds: "Sounds",
     soundsTooltip: "Toggle sound effects on or off.",
-    background: "theme",
+    background: "Theme",
     backgroundTooltip: "Choose a theme for the game.",
     backgroundSonner: {
       sonnerText: 'Refresh the page to see all changes!',

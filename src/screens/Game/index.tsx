@@ -19,7 +19,7 @@ export function Game() {
     const { language, game, style } = useSettings();
 
     useEffect(() => {
-        if (game.gamingMode) navigate("/setup");
+        if (!game.gamingMode) navigate("/setup");
     }, [, navigate]);
 
     const { show } = useNativeArrow();

@@ -15,6 +15,7 @@ function ScreenWrapper({ children, className }: ScreenWrapperProps) {
     const location = useLocation();
 
     const allowedGamingPath = ['/game']
+    console.log(location.pathname)
 
     useEffect(() => {
         if (!allowedGamingPath.includes(location.pathname)) {
