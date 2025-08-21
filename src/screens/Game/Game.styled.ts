@@ -75,12 +75,13 @@ export const RankContainer = styled.div<{ $position: string; $color: string }>`
   position: absolute;
   ${({ $position }) => ($position === "top" ? "top: 20px" : "bottom: 20px")};
   ${({ $position }) => ($position === "top" ? "left: 20px" : "right: 20px")};
-  transform: ${({ $position }) => $position === 'bottom' ? 'rotate(180deg)' : ''};
+  transform: ${({ $position }) =>
+    $position === "bottom" ? "rotate(180deg)" : ""};
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 7px;
-  color: ${({$color}) => $color};
+  color: ${({ $color }) => $color};
 `;
 export const Suit = styled.div`
   transform: scale(1.3);
@@ -88,13 +89,12 @@ export const Suit = styled.div`
 
 export const CardRank = styled.div`
   font-size: ${theme.fontSize.mediumHeading};
-  font-family: 'Montagu Slab', serif;
+  font-family: "Montagu Slab", serif;
 `;
 
-export const CardRule = styled(CardRank)<{$color: string}>`
-  color: ${({$color}) => $color};
+export const CardRule = styled.p<{ $color: string }>`
+  color: ${({ $color }) => $color} !important;
   font-size: ${theme.fontSize.smallHeading};
   text-align: center;
   padding: 0 3%;
-`
-
+`;
