@@ -79,25 +79,25 @@ export function Settings() {
                 duration={300}
             >
                 <ToggleGroup
-                    label={translations.settings.limitTime}
-                    onTooltip={() => toast.info(translations.settings.limitTimeTooltip)}
-                    options={toggleOptions.timeLimit}
-                    defaultOption={game.limitTime}
-                    onOptionChange={(option) => game.setLimitTime(option)}
-                />
-            </Collapse>
-            <Collapse
-                isOpen={!game.gameSetup}
-                contentHeight={85}
-                marginOpen={20}
-                duration={300}
-            >
-                <ToggleGroup
                     label={translations.settings.infinityTime} // to change
                     onTooltip={() => toast.info(translations.settings.infinityTimeTooltip)} // to change
                     options={toggleOptions.booleanOptions}
                     defaultOption={game.infinityTime}
                     onOptionChange={(option) => game.setInfinityTime(option)}
+                />
+            </Collapse>
+            <Collapse
+                isOpen={!game.gameSetup && !game.infinityTime}
+                contentHeight={85}
+                marginOpen={20}
+                duration={300}
+            >
+                <ToggleGroup
+                    label={translations.settings.limitTime}
+                    onTooltip={() => toast.info(translations.settings.limitTimeTooltip)}
+                    options={toggleOptions.timeLimit}
+                    defaultOption={game.limitTime}
+                    onOptionChange={(option) => game.setLimitTime(option)}
                 />
             </Collapse>
             <Collapse

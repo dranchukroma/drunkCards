@@ -69,8 +69,6 @@ export function Game() {
 
     // показати поточну картку (flip вперед)
     const showCard = useCallback(() => {
-        console.log('showCard');
-
         if (phase === "flipping") return;
         setPhase("flipping");
         clearTimer();
@@ -82,8 +80,6 @@ export function Game() {
 
     // сховати картку (flip назад) і перейти до наступної/фіналу
     const hideCard = useCallback(() => {
-        console.log(phase);
-
         if (phase !== "waitingForMove") return;
         setPhase("flipping");
         clearTimer();
@@ -123,7 +119,8 @@ export function Game() {
     return (
         <GameWrapper>
             <TimerWidget
-                gameMinutes={game.limitTime}
+                // gameMinutes={game.limitTime}
+                gameMinutes={0.1}
                 resetTimer={resetTimer}
                 setResetTimer={setResetTimer}
             />
@@ -155,7 +152,7 @@ export function Game() {
                 onOpenChange={(open) => { if (!open) setPhase("waitingForMove") }}
                 title={phase === 'paused' ? translations.game.PauseGameModalTitle : translations.game.EndGameModalTitle}
                 description={phase === 'paused' ? translations.game.PauseGameModalDescrition : translations.game.EndGameModalDescrition}
-                onConfirm={phase === 'paused' ? () => { setPhase('waitingForMove') } : playAgain}
+                onConfirm={phase === 'paused' ? () => { setPhase('idle') } : playAgain}
                 onCancel={() => {
                     setPhase('idle');
                     resetGame();

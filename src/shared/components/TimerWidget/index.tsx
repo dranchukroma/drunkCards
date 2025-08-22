@@ -62,16 +62,17 @@ function TimerWidget({ gameMinutes, resetTimer, setResetTimer }: TimerWidgetProp
             setSecondsLeft(gameSeconds);
             setTimeLeft(getTimeLeft(gameSeconds));
             setResetTimer(false);
+            setPhase('idle');
         }
-    }, [resetTimer, gameSeconds, setResetTimer]);
+    }, [resetTimer, gameSeconds, setResetTimer, setPhase]);
 
     // головний інтервал — НЕ залежить від phase, щоб не зупинявся при кліках
     useEffect(() => {
         if (game.infinityTime) return; // без таймера в infinity режимі
 
+
         const id = window.setInterval(() => {
             const currentPhase = phaseRef.current;
-            // у "idle"/"ended" не тікаємо час (паузимо)
             if (currentPhase === "idle" || currentPhase === "ended" || currentPhase === 'paused') return;
 
             setSecondsLeft((prev) => {

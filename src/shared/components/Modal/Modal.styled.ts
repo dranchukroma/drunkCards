@@ -8,15 +8,15 @@ const overlayShow = keyframes`
 `;
 
 const contentShow = keyframes`
-  from { opacity: 0; transform: translateY(20px) scale(0.96); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from { opacity: 0; transform: translate(-50%, calc(-50% + 20px)) scale(0.5); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 `;
 
 export const Overlay = styled(Dialog.Overlay)`
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   inset: 0;
-  animation: ${overlayShow} 200ms ease-out;
+  animation: ${overlayShow} 300ms ease-out;
   z-index: 1000;
 `;
 
@@ -35,7 +35,7 @@ export const Content = styled(Dialog.Content)<{$bgColor: string, $shadows: strin
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  animation: ${contentShow} 200ms ease-out;
+  animation: ${contentShow} 300ms ease-out;
   z-index: 1001;
 
   text-align: center;

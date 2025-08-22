@@ -1,6 +1,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { Overlay, Content, Title, ButtonRow, Button, Description } from './Modal.styled'
 import { useSettings } from "@providers/SettingProvider";
+import useSoundEffect from "@hooks/useSoundEffect";
 
 type ModalProps = {
     open: boolean;
@@ -15,6 +16,7 @@ type ModalProps = {
 
 export function Modal({ open, onOpenChange, title, description, confirmButton, cancelButton, onConfirm, onCancel }: ModalProps) {
     const { style } = useSettings();
+    const clickSound = useSoundEffect('/sounds/soft-click.wav');
 
     return (
         <Dialog.Root open={open}>
@@ -31,8 +33,11 @@ export function Modal({ open, onOpenChange, title, description, confirmButton, c
                         <Button
                             variant="secondary"
                             onClick={() => {
-                                onCancel?.();
-                                onOpenChange(false); // To change
+                                clickSound();
+                                setTimeout(() => {
+                                    onCancel?.();
+                                    onOpenChange(false); // To change
+                                }, 150);
                             }}
                         >
                             {cancelButton}
@@ -40,8 +45,11 @@ export function Modal({ open, onOpenChange, title, description, confirmButton, c
                         <Button
                             variant="primary"
                             onClick={() => {
-                                onConfirm?.();
-                                onOpenChange(false);  // To change
+                                clickSound();
+                                setTimeout(() => {
+                                    onConfirm?.();
+                                    onOpenChange(false);  // To change
+                                }, 150);
                             }}
                         >
                             {confirmButton}
