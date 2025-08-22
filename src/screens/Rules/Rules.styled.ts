@@ -4,6 +4,11 @@ import ScreenWrapper from "@components/ScreenWrapper";
 
 export const Wrapper = styled(ScreenWrapper)<{ $color: string }>`
   color: ${({ $color }) => $color};
+
+  > :last-child{
+    margin-bottom: 10px;
+  }
+
 `;
 
 export const MainTitle = styled.h2`
