@@ -6,6 +6,8 @@ import { useSettings } from "@providers/SettingProvider";
 import { useNativeArrow } from "@providers/NativeArrowProvider";
 import { useEffect } from "react";
 import { usePwaRedirect } from "./usePwaRedirect";
+import { initialGame } from "@screens/Game/initialGame";
+import { useGameStore } from "storage/gameStorage";
 
 export function Menu() {
     usePwaRedirect();
@@ -14,9 +16,16 @@ export function Menu() {
     const appTheme = style.appTheme
     const { hide } = useNativeArrow();
     const navigate = useNavigate();
+    const setDeck = useGameStore.getState().setDeck
+    const setInfinityCards = useGameStore.getState().setInfinityCards
 
     useEffect(() => hide(), [hide]);
 
+    const usePlayButton = () => {
+        if(game.gameSetup) return navigate('/setup');
+        return initialGame(game.limitCards, navigate, setDeck, () => setInfinityCards(game.infinityCards), game.setGamingMode)
+    }
+    
     return (
         <MenuWrapper>
             <StyledImageLogo fillColor={appTheme.logoColor} />
@@ -29,7 +38,7 @@ export function Menu() {
             <LogoLabel $fillColor={appTheme.logoColor}>
                 {translations.menu.logoLabel}
             </LogoLabel>
-            <MenuButton onClick={() => navigate(game.gameSetup ? '/setup' : '/game')}>
+            <MenuButton onClick={usePlayButton}>
                 {translations.menu.playCTA}
             </MenuButton>
             <MenuButton onClick={() => navigate('/rules')}>
