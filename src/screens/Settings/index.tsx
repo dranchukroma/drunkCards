@@ -9,6 +9,7 @@ import ThemeToggle from "@components/Toggle/ThemeToggle";
 import { toast } from "sonner";
 import { getToggletOptions } from "../../shared/utils/toggleOptions";
 import Tooltip from "@components/Tooltip";
+import Collapse from "@components/Collapse";
 
 export function Settings() {
     const { audio, game, language, style } = useSettings()
@@ -43,46 +44,76 @@ export function Settings() {
                 defaultOption={game.gameSetup}
                 onOptionChange={(option) => game.setGameSetup(option)}
             />
-            <ToggleGroup
-                disabled={game.gameSetup}
-                label={translations.settings.cardLimit}
-                onTooltip={() => toast.info(translations.settings.cardLimitTooltip)}
-                options={toggleOptions.cardLimit}
-                defaultOption={game.limitCards}
-                onOptionChange={(option) => game.setLimitCards(option)}
-            />
-            <ToggleGroup
-                disabled={game.gameSetup}
-                label={translations.settings.infinityCards} // to change
-                onTooltip={() => toast.info(translations.settings.infinityCardsTooltip)} // to change
-                options={toggleOptions.booleanOptions}
-                defaultOption={game.infinityCards}
-                onOptionChange={(option) => game.setInfinityCards(option)}
-            />
-            <ToggleGroup
-                disabled={game.gameSetup}
-                label={translations.settings.limitTime}
-                onTooltip={() => toast.info(translations.settings.limitTimeTooltip)}
-                options={toggleOptions.timeLimit}
-                defaultOption={game.limitTime}
-                onOptionChange={(option) => game.setLimitTime(option)}
-            />
-            <ToggleGroup
-                disabled={game.gameSetup}
-                label={translations.settings.infinityTime} // to change
-                onTooltip={() => toast.info(translations.settings.infinityTimeTooltip)} // to change
-                options={toggleOptions.booleanOptions}
-                defaultOption={game.infinityTime}
-                onOptionChange={(option) => game.setInfinityTime(option)}
-            />
-            <ToggleGroup
-                disabled={game.gameSetup}
-                label={translations.settings.multiLanguage}
-                onTooltip={() => toast.info(translations.settings.multiLanguageTooltip)}
-                options={toggleOptions.booleanOptions}
-                defaultOption={language.multiLanguage}
-                onOptionChange={(option) => language.setMultiLanguage(option)}
-            />
+            <Collapse
+                isOpen={!game.gameSetup}
+                contentHeight={85}
+                marginOpen={20}
+                duration={300}
+            >
+                <ToggleGroup
+                    label={translations.settings.cardLimit}
+                    onTooltip={() => toast.info(translations.settings.cardLimitTooltip)}
+                    options={toggleOptions.cardLimit}
+                    defaultOption={game.limitCards}
+                    onOptionChange={(option) => game.setLimitCards(option)}
+                />
+            </Collapse>
+            <Collapse
+                isOpen={!game.gameSetup}
+                contentHeight={85}
+                marginOpen={20}
+                duration={300}
+            >
+                <ToggleGroup
+                    label={translations.settings.infinityCards} // to change
+                    onTooltip={() => toast.info(translations.settings.infinityCardsTooltip)} // to change
+                    options={toggleOptions.booleanOptions}
+                    defaultOption={game.infinityCards}
+                    onOptionChange={(option) => game.setInfinityCards(option)}
+                />
+            </Collapse>
+            <Collapse
+                isOpen={!game.gameSetup}
+                contentHeight={85}
+                marginOpen={20}
+                duration={300}
+            >
+                <ToggleGroup
+                    label={translations.settings.limitTime}
+                    onTooltip={() => toast.info(translations.settings.limitTimeTooltip)}
+                    options={toggleOptions.timeLimit}
+                    defaultOption={game.limitTime}
+                    onOptionChange={(option) => game.setLimitTime(option)}
+                />
+            </Collapse>
+            <Collapse
+                isOpen={!game.gameSetup}
+                contentHeight={85}
+                marginOpen={20}
+                duration={300}
+            >
+                <ToggleGroup
+                    label={translations.settings.infinityTime} // to change
+                    onTooltip={() => toast.info(translations.settings.infinityTimeTooltip)} // to change
+                    options={toggleOptions.booleanOptions}
+                    defaultOption={game.infinityTime}
+                    onOptionChange={(option) => game.setInfinityTime(option)}
+                />
+            </Collapse>
+            <Collapse
+                isOpen={!game.gameSetup}
+                contentHeight={85}
+                marginOpen={20}
+                duration={300}
+            >
+                <ToggleGroup
+                    label={translations.settings.multiLanguage}
+                    onTooltip={() => toast.info(translations.settings.multiLanguageTooltip)}
+                    options={toggleOptions.booleanOptions}
+                    defaultOption={language.multiLanguage}
+                    onOptionChange={(option) => language.setMultiLanguage(option)}
+                />
+            </Collapse>
             <ToggleGroup
                 label={translations.settings.language}
                 onTooltip={() => toast.info(translations.settings.languageTooltip)}

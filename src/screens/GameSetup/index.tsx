@@ -10,6 +10,7 @@ import { initialGame } from "@screens/Game/initialGame";
 import { useGameStore } from "storage/gameStorage";
 import Tooltip from "@components/Tooltip";
 import { toast } from "sonner";
+import Collapse from "@components/Collapse";
 
 export function GameSetup() {
     const navigate = useNavigate();
@@ -72,23 +73,6 @@ export function GameSetup() {
             <ToggleGroupContainer>
                 <ToggleInfoContainer>
                     <ToggleLabel $shadows={style.appTheme.textShadow}>
-                        {translations.settings.limitTime}
-                    </ToggleLabel>
-                    <Tooltip
-                        color={style.appTheme.fontColor}
-                        onClick={() => toast.info(translations.settings.limitTimeTooltip)}
-                    />
-                </ToggleInfoContainer>
-
-                <ToggleButton
-                    options={toggleOptions.timeLimit}
-                    defaultOption={game.limitTime}
-                    onOptionChange={(option) => game.setLimitTime(option)}
-                />
-            </ToggleGroupContainer>
-            <ToggleGroupContainer>
-                <ToggleInfoContainer>
-                    <ToggleLabel $shadows={style.appTheme.textShadow}>
                         {translations.settings.infinityTime}
                     </ToggleLabel>
                     <Tooltip
@@ -103,6 +87,29 @@ export function GameSetup() {
                     onOptionChange={(option) => game.setInfinityTime(option)}
                 />
             </ToggleGroupContainer>
+            <Collapse
+                isOpen={!game.infinityTime}
+                duration={300}
+                contentHeight={85}
+                marginClosed={-20}
+            >
+                <ToggleGroupContainer>
+                    <ToggleInfoContainer>
+                        <ToggleLabel $shadows={style.appTheme.textShadow}>
+                            {translations.settings.limitTime}
+                        </ToggleLabel>
+                        <Tooltip
+                            color={style.appTheme.fontColor}
+                            onClick={() => toast.info(translations.settings.limitTimeTooltip)}
+                        />
+                    </ToggleInfoContainer>
+                    <ToggleButton
+                        options={toggleOptions.timeLimit}
+                        defaultOption={game.limitTime}
+                        onOptionChange={(option) => game.setLimitTime(option)}
+                    />
+                </ToggleGroupContainer>
+            </Collapse>
             <ToggleGroupContainer>
                 <ToggleInfoContainer>
                     <ToggleLabel $shadows={style.appTheme.textShadow}>

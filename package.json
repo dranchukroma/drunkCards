@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
+    "framer-motion": "^12.23.12",
     "howler": "^2.2.4",
     "path": "^0.12.7",
     "react": "^19.1.0",
