@@ -55,4 +55,5 @@ export const ToggleInfoContainer = styled.div`
 export const PlayButton = styled(MenuButton)`
   font-size: ${theme.fontSize.mediumParagraf};
   width: 300px;
+  margin-bottom: 30px;
 `;
