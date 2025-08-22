@@ -47,6 +47,10 @@ export type TranslationSchema = {
     cardLimitTooltip: string;
     limitTime: string;
     limitTimeTooltip: string;
+    infinityCards: string;
+    infinityCardsTooltip: string;
+    infinityTime: string;
+    infinityTimeTooltip: string;
     music: string;
     musicTooltip: string;
     sounds: string;

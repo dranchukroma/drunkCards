@@ -82,12 +82,16 @@ export const pl = {
     },
   },
   settings: {
-    cardLimit: "Limit kart",
+    cardLimit: "Typ talii",
     cardLimitTooltip:
-      "Ustaw limit kart w grze. Gra kończy się po jego osiągnięciu.",
+      "Ustaw typ talii w grze",
     limitTime: "Limit czasu (min)",
     limitTimeTooltip:
       "Ustaw limit czasu gry. Gdy czas się skończy, gra się zakończy.",
+      infinityCards: "Nieskończone karty",
+  infinityCardsTooltip: "Talia nigdy się nie kończy — karty mogą się powtarzać bez końca. Gra trwa, dopóki sam jej nie zakończysz.",
+  infinityTime: "Nieskończony czas",
+  infinityTimeTooltip: "Brak limitu czasu — graj tak długo, jak chcesz. Gra kończy się tylko wtedy, gdy ją zamkniesz.",
     music: "Muzyka",
     musicTooltip: "Włącz lub wyłącz muzykę w tle.",
     sounds: "Dźwięki",
@@ -100,9 +104,9 @@ export const pl = {
     },
     multiLanguage: "Wiele języczność",
     multiLanguageTooltip: "Pozwala graczom zmieniać język zasad w trakcie gry.",
-    gameSetUp: "Konfiguracja gry",
+    gameSetUp: "Konfiguracja przed grą",
     gameSetUpTooltip:
-      "Pokaż ekran konfiguracji gry przed rozpoczęciem nowej gry",
+      "Włącz, aby ustawić parametry (limit kart, czas) przed każdą grą. Jeśli wyłączone — gra rozpocznie się od razu z zapisanymi ustawieniami.",
     language: "Język",
     languageTooltip: "Wybierz język interfejsu gry.",
     yesOption: "Tak",

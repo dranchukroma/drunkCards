@@ -85,11 +85,15 @@ export const en = {
     }
   },
   settings: {
-    cardLimit: "Card limit",
+    cardLimit: "Deck type",
     cardLimitTooltip:
-      "Set the number of cards in the game. The game ends when the limit is reached.",
+      "Set the type deck.",
     limitTime: "Time limit (min)",
     limitTimeTooltip: "Set a game timer. When time runs out, the game ends.",
+    infinityCards: "Endless Cards",
+    infinityCardsTooltip: "The deck never runs out — cards can repeat endlessly. The game continues until you decide to stop.",
+    infinityTime: "Endless Time",
+    infinityTimeTooltip: "No time limit — play as long as you want. The game ends only when you close it.",
     music: "Music",
     musicTooltip: "Toggle background music on or off.",
     sounds: "Sounds",
@@ -103,8 +107,8 @@ export const en = {
     multiLanguage: "Multi language",
     multiLanguageTooltip:
       "Allows players to switch rules language during the game.",
-    gameSetUp: "Game set up",
-    gameSetUpTooltip: "Show game setup screen before starting new game",
+    gameSetUp: "Setup before game",
+    gameSetUpTooltip: "Enable to choose settings (card limit, time limit) before each game. If disabled, the game starts right away with saved settings.",
     language: "Language",
     languageTooltip: "Choose the interface language.",
     yesOption: "Yes",
