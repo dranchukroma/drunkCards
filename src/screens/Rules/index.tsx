@@ -5,11 +5,7 @@ import { useEffect } from "react";
 import { useLanguage } from "@providers/LanguageProvider";
 import { useSettings } from "@providers/SettingProvider";
 
-type RulesProps = {
-
-}
-
-export function Rules({ }: RulesProps) {
+export function Rules() {
     const navigate = useNavigate();
     const { show } = useNativeArrow();
     const { translations } = useLanguage();
@@ -45,6 +41,7 @@ export function Rules({ }: RulesProps) {
             <Ul>
                 {rules.gameDuration.paragraphs.map((p, i) => <Li key={i}>{p}</Li>)}
             </Ul>
+            <br/>
             {rules.footer.lines.map((p, i) => <Paragraf key={i}><b>{p}</b></Paragraf>)}
         </Wrapper>
     )
