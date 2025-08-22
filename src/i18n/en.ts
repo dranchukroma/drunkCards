@@ -29,7 +29,7 @@ export const en = {
       Safari: [
         "Tap the Share icon",
         "Select Add to Home Screen",
-        "Finally, press Add<",
+        "Finally, press Add",
       ],
     },
     Android: {

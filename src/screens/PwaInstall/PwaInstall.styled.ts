@@ -60,6 +60,7 @@ export const StepNumber = styled.div<{ $color: string }>`
 export const StepLabel = styled.h3<{ $color: string }>`
   color: ${({ $color }) => $color};
   font-size: ${theme.fontSize.smallParagraf};
+  padding: 0 5px;
 `;
 
 export const IconWrapper = styled.div`
