@@ -26,7 +26,7 @@ export const InfoWrapper = styled.div`
   align-items: center;
   max-width: 300px;
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `;
 
 export const ToggleLabel = styled.p<{ color: string; $shadows: string }>`

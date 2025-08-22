@@ -37,11 +37,19 @@ export const Description = styled.p`
 export const ToggleLabel = styled.p<{ $shadows: string }>`
   font-size: ${theme.fontSize.mediumParagraf};
   text-shadow: ${({ $shadows }) => $shadows};
-  margin-bottom: 10px;
 `;
 
 export const ToggleGroupContainer = styled.div`
   margin: 0 auto;
+`;
+
+export const ToggleInfoContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 300px;
+  width: 100%;
+  margin-bottom: 5px;
 `;
 
 export const PlayButton = styled(MenuButton)`

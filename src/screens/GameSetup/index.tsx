@@ -1,5 +1,5 @@
 import { useLanguage } from "@providers/LanguageProvider";
-import { Description, InfoContainer, PlayButton, SetUpWrapper, Title, TitleWrapper, ToggleGroupContainer, ToggleLabel } from "./GameSetup.styled";
+import { Description, InfoContainer, PlayButton, SetUpWrapper, Title, TitleWrapper, ToggleGroupContainer, ToggleInfoContainer, ToggleLabel } from "./GameSetup.styled";
 import { useNativeArrow } from "@providers/NativeArrowProvider";
 import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
@@ -37,9 +37,15 @@ export function GameSetup() {
                 {translations.setup.paragraphs.map((p, i) => <Description key={i}>{p}</Description>)}
             </InfoContainer>
             <ToggleGroupContainer>
-                <ToggleLabel $shadows={style.appTheme.textShadow}>
-                    {translations.settings.cardLimit}
-                </ToggleLabel>
+                <ToggleInfoContainer>
+                    <ToggleLabel $shadows={style.appTheme.textShadow}>
+                        {translations.settings.cardLimit}
+                    </ToggleLabel>
+                    <Tooltip
+                        color={style.appTheme.fontColor}
+                        onClick={() => toast.info(translations.settings.cardLimitTooltip)}
+                    />
+                </ToggleInfoContainer>
                 <ToggleButton
                     options={toggleOptions.cardLimit}
                     defaultOption={game.limitCards}
@@ -47,9 +53,16 @@ export function GameSetup() {
                 />
             </ToggleGroupContainer>
             <ToggleGroupContainer>
-                <ToggleLabel $shadows={style.appTheme.textShadow}>
-                    {"Infinity cards"}
-                </ToggleLabel>
+                <ToggleInfoContainer>
+                    <ToggleLabel $shadows={style.appTheme.textShadow}>
+                        {translations.settings.infinityCards}
+                    </ToggleLabel>
+                    <Tooltip
+                        color={style.appTheme.fontColor}
+                        onClick={() => toast.info(translations.settings.infinityCardsTooltip)}
+                    />
+                </ToggleInfoContainer>
+
                 <ToggleButton
                     options={toggleOptions.booleanOptions}
                     defaultOption={game.infinityCards}
@@ -57,9 +70,16 @@ export function GameSetup() {
                 />
             </ToggleGroupContainer>
             <ToggleGroupContainer>
-                <ToggleLabel $shadows={style.appTheme.textShadow}>
-                    {translations.settings.limitTime}
-                </ToggleLabel>
+                <ToggleInfoContainer>
+                    <ToggleLabel $shadows={style.appTheme.textShadow}>
+                        {translations.settings.limitTime}
+                    </ToggleLabel>
+                    <Tooltip
+                        color={style.appTheme.fontColor}
+                        onClick={() => toast.info(translations.settings.limitTimeTooltip)}
+                    />
+                </ToggleInfoContainer>
+
                 <ToggleButton
                     options={toggleOptions.timeLimit}
                     defaultOption={game.limitTime}
@@ -67,9 +87,16 @@ export function GameSetup() {
                 />
             </ToggleGroupContainer>
             <ToggleGroupContainer>
-                <ToggleLabel $shadows={style.appTheme.textShadow}>
-                    {"Infinity time"}
-                </ToggleLabel>
+                <ToggleInfoContainer>
+                    <ToggleLabel $shadows={style.appTheme.textShadow}>
+                        {translations.settings.infinityTime}
+                    </ToggleLabel>
+                    <Tooltip
+                        color={style.appTheme.fontColor}
+                        onClick={() => toast.info(translations.settings.infinityTimeTooltip)}
+                    />
+                </ToggleInfoContainer>
+
                 <ToggleButton
                     options={toggleOptions.booleanOptions}
                     defaultOption={game.infinityTime}
@@ -77,9 +104,16 @@ export function GameSetup() {
                 />
             </ToggleGroupContainer>
             <ToggleGroupContainer>
-                <ToggleLabel $shadows={style.appTheme.textShadow}>
-                    {translations.settings.multiLanguage}
-                </ToggleLabel>
+                <ToggleInfoContainer>
+                    <ToggleLabel $shadows={style.appTheme.textShadow}>
+                        {translations.settings.multiLanguage}
+                    </ToggleLabel>
+                    <Tooltip
+                        color={style.appTheme.fontColor}
+                        onClick={() => toast.info(translations.settings.multiLanguageTooltip)}
+                    />
+                </ToggleInfoContainer>
+
                 <ToggleButton
                     options={toggleOptions.booleanOptions}
                     defaultOption={language.multiLanguage}
