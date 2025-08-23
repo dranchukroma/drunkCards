@@ -12,11 +12,15 @@ import Card from "./Card";
 import { generateDeck } from "shared/utils/generateDeck";
 import Infinity from "@components/Icons/Infinity";
 import { Modal } from "@components/Modal";
+import useSoundEffect from "@hooks/useSoundEffect";
 
 export function Game() {
     const navigate = useNavigate();
     const { translations } = useLanguage();
     const { language, game, style } = useSettings();
+    const hideSound = useSoundEffect('/sounds/hide-card.mp3');
+    const showSound = useSoundEffect('/sounds/show-card.mp3');
+    const finisSound = useSoundEffect('/sounds/game-finish.mp3');
 
     useEffect(() => {
         if (!game.gamingMode) navigate("/setup");
@@ -70,6 +74,7 @@ export function Game() {
     // показати поточну картку (flip вперед)
     const showCard = useCallback(() => {
         if (phase === "flipping") return;
+        showSound();
         setPhase("flipping");
         clearTimer();
         timeoutRef.current = window.setTimeout(() => {
@@ -81,8 +86,10 @@ export function Game() {
     // сховати картку (flip назад) і перейти до наступної/фіналу
     const hideCard = useCallback(() => {
         if (phase !== "waitingForMove") return;
+        hideSound();
         setPhase("flipping");
         clearTimer();
+        
         timeoutRef.current = window.setTimeout(() => {
             const isLast = currentCardIndex + 1 >= deck.length;
 
@@ -120,7 +127,7 @@ export function Game() {
         <GameWrapper>
             <TimerWidget
                 // gameMinutes={game.limitTime}
-                gameMinutes={0.1}
+                gameMinutes={0.02}
                 resetTimer={resetTimer}
                 setResetTimer={setResetTimer}
             />
@@ -159,6 +166,8 @@ export function Game() {
                     setCardFlipped(false);
                     navigate('/');
                 }}
+                openSound={phase === 'ended' ? finisSound : () => {}}
+                // openSound={finisSound}
                 confirmButton={phase === 'paused' ? translations.game.CtaUnpause : translations.game.CtaPlayAgain}
                 cancelButton={translations.game.CtaFinishGame}
             />

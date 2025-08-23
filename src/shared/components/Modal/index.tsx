@@ -2,6 +2,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { Overlay, Content, Title, ButtonRow, Button, Description } from './Modal.styled'
 import { useSettings } from "@providers/SettingProvider";
 import useSoundEffect from "@hooks/useSoundEffect";
+import { useEffect } from "react";
 
 type ModalProps = {
     open: boolean;
@@ -12,11 +13,20 @@ type ModalProps = {
     onCancel?: () => void;
     confirmButton: string;
     cancelButton: string;
+    openSound?: () => void;
 };
 
-export function Modal({ open, onOpenChange, title, description, confirmButton, cancelButton, onConfirm, onCancel }: ModalProps) {
+export function Modal({ open, onOpenChange, title, description, openSound, confirmButton, cancelButton, onConfirm, onCancel }: ModalProps) {
     const { style } = useSettings();
     const clickSound = useSoundEffect('/sounds/soft-click.wav');
+
+    useEffect(() => {
+        if (open) {
+            openSound?.();
+            console.log('sound')
+            console.log(openSound)
+        }
+    }, [open, openSound]);
 
     return (
         <Dialog.Root open={open}>

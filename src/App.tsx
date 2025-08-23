@@ -35,7 +35,7 @@ function App() {
         <Route path='/game' element={<Game />} />
         <Route path='/PwaInstall' element={<PwaInstall />} />
       </Routes>
-      <Toaster visibleToasts={1} mobileOffset={50} position={'bottom-center'} closeButton />
+      <Toaster visibleToasts={1} mobileOffset={25} position={'bottom-center'} closeButton />
     </BrowserRouter>
   );
 }
