@@ -7,6 +7,7 @@ import Clubs from "@components/Icons/Clubs";
 import Hearts from "@components/Icons/Hearts";
 import Spades from "@components/Icons/Spades";
 import { type ReactNode } from "react";
+import DivideLine from "@components/Icons/DivideLine";
 
 type CardProps = {
     appTheme: AppThemeType;
@@ -21,9 +22,9 @@ function Card({ appTheme, isCardFlipped, card = { cardNumber: 14, suit: 'diamond
 
     const cardColor = (suit: string): string => {
         switch (suit) {
-            case 'diamonds': return 'red';
+            case 'diamonds': return '#E43636';
             case 'clubs': return 'black';
-            case 'hearts': return 'red';
+            case 'hearts': return '#E43636';
             case 'spades': return 'black';
         }
         return 'black';
@@ -65,7 +66,18 @@ function Card({ appTheme, isCardFlipped, card = { cardNumber: 14, suit: 'diamond
                         <Suit>{suit(card?.suit, cardColor(card?.suit))}</Suit>
                     </RankContainer>
                     <CardRule $color={cardColor(card?.suit)}>
+                        <DivideLine
+                            color={cardColor(card?.suit)}
+                            style={{
+                                paddingBottom: 10,
+                            }} />
                         {translations.game.cardAction[`c${card?.cardNumber as CardNumber}`]}
+                        <DivideLine
+                            color={cardColor(card?.suit)}
+                            style={{
+                                transform: 'rotate(180deg)',
+                                paddingBottom: 10,
+                            }} />
                     </CardRule>
                     <RankContainer $position={'bottom'} $color={cardColor(card?.suit)}>
                         <CardRank>{rank(card?.cardNumber)}</CardRank>

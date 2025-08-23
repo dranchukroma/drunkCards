@@ -47,7 +47,7 @@ export const CardStyles = css<{ $bgColor: string; $color: string }>`
   align-items: center;
 
   p {
-    font-size: ${theme.fontSize.mediumHeading};
+    font-size: ${theme.fontSize.smallHeading};
     color: ${({ $color }) => $color};
   }
 `;
@@ -96,5 +96,10 @@ export const CardRule = styled.p<{ $color: string }>`
   color: ${({ $color }) => $color} !important;
   font-size: ${theme.fontSize.smallHeading};
   text-align: center;
-  padding: 0 3%;
+  padding: 0 4%;
+  width: 100%;
+
+  span{
+    margin: 10px 0;
+  }
 `;
