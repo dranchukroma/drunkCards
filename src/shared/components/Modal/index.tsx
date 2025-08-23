@@ -23,8 +23,6 @@ export function Modal({ open, onOpenChange, title, description, openSound, confi
     useEffect(() => {
         if (open) {
             openSound?.();
-            console.log('sound')
-            console.log(openSound)
         }
     }, [open, openSound]);
 

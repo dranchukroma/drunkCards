@@ -10,6 +10,8 @@ export const Wrapper = styled.div`
   max-height: calc(100vh - 80px);
   overflow-y: scroll;
 
+  -webkit-overflow-scrolling: touch;
+
   /* 🔵 Chrome, Safari, Edge (WebKit) */
   &::-webkit-scrollbar {
     width: 6px;

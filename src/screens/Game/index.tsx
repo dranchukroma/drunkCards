@@ -122,12 +122,11 @@ export function Game() {
     }, []);
 
     const cardsLeft = useMemo(() => Math.max(deck.length - currentCardIndex, 0), [deck.length, currentCardIndex]);
-
     return (
         <GameWrapper>
             <TimerWidget
-                // gameMinutes={game.limitTime}
-                gameMinutes={0.02}
+                gameMinutes={game.limitTime}
+                // gameMinutes={0.02}
                 resetTimer={resetTimer}
                 setResetTimer={setResetTimer}
             />

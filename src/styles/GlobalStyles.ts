@@ -1,11 +1,23 @@
-import { createGlobalStyle } from 'styled-components';
-import theme from './theme';
-import type { AppThemeType } from './theme';
+import { createGlobalStyle } from "styled-components";
+import theme from "./theme";
+import type { AppThemeType } from "./theme";
 
 const GlobalStyle = createGlobalStyle<{ appTheme: AppThemeType }>`
+    * {
+    user-select: none;
+    -webkit-user-select: none; /* iOS Safari */
+    -ms-user-select: none;     /* IE/Edge старі */
+    -webkit-touch-callout: none; /* Safari iOS */
+    }
+
+
     html, body {
         background: ${({ appTheme }) => appTheme.base || "#EEE"};
         background: ${({ appTheme }) => appTheme.gradient || "#EEE"};
+        touch-action: manipulation; /* блокує zoom і подвійні тапи */
+        overflow: hidden;
+        height: 100%;
+        touch-action: none;
     }
     
 
@@ -35,4 +47,4 @@ const GlobalStyle = createGlobalStyle<{ appTheme: AppThemeType }>`
     }
 `;
 
-export default GlobalStyle
+export default GlobalStyle;
