@@ -70,7 +70,7 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
         multiLanguage: setDefaultBoolean('multiLanguage', true),
         sounds: setDefaultBoolean('sounds', true),
         music: setDefaultBoolean('music', false),
-        background: setDefaultString('background', 'bg1'),
+        background: setDefaultString('background', 'bg3'),
         limitTime: setDefaultNumber('limitTime', 90),
         limitCards: setDefaultNumber('limitCards', 36),
         infinityTime: setDefaultBoolean('infinityTime', false),
