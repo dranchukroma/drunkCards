@@ -1,4 +1,4 @@
-import { useEffect, type ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import { SlideContainer } from './Collapse.styled';
 
 
@@ -12,10 +12,6 @@ type SliderProps = {
 }
 
 function Collapse({ children, isOpen = true, duration = 300, marginOpen = 0, marginClosed = 0, contentHeight = 100 }: SliderProps) {
-  useEffect(() => {
-    console.log(`${isOpen ? marginOpen : marginClosed}`);
-  }, [isOpen])
-  
   return <SlideContainer
     $duration={duration}
     $isOpen={isOpen}

@@ -39,7 +39,7 @@ export function Modal({ open, onOpenChange, title, description, openSound, confi
                     {description && <Description>{description}</Description>}
                     <ButtonRow>
                         <Button
-                            variant="secondary"
+                            $variant="secondary"
                             onClick={() => {
                                 clickSound();
                                 setTimeout(() => {
@@ -51,7 +51,7 @@ export function Modal({ open, onOpenChange, title, description, openSound, confi
                             {cancelButton}
                         </Button>
                         <Button
-                            variant="primary"
+                            $variant="primary"
                             onClick={() => {
                                 clickSound();
                                 setTimeout(() => {

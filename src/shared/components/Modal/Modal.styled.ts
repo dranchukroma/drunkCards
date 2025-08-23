@@ -63,18 +63,18 @@ export const ButtonRow = styled.div`
   gap: 10px;
 `;
 
-export const Button = styled.button<{ variant?: "primary" | "secondary" }>`
+export const Button = styled.button<{ $variant?: "primary" | "secondary" }>`
   border: none;
   padding: 8px 16px;
   border-radius: 8px;
   font-size: 14px;
   cursor: pointer;
-  background-color: ${({ variant }) =>
-    variant === "primary" ? "#000" : "transparent"};
-  color: ${({ variant }) =>
-    variant === "primary" ? "#fff" : "inherit"};
-  border: ${({ variant }) =>
-    variant === "secondary" ? "1px solid #ccc" : "none"};
+  background-color: ${({ $variant }) =>
+    $variant === "primary" ? "#000" : "transparent"};
+  color: ${({ $variant }) =>
+    $variant === "primary" ? "#fff" : "inherit"};
+  border: ${({ $variant }) =>
+    $variant === "secondary" ? "1px solid #ccc" : "none"};
 
   &:hover {
     opacity: 0.9;
