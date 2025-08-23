@@ -115,7 +115,7 @@ export const en = {
     noOption: "No",
   },
   game: {
-    showCard: "Show card",
+    showCard: "Tap to reveal the card",
     cardAction: {
       c2: "Ask any other player a question. If they refuse to answer — they drink. If you don’t want to ask — you drink.",
       c3: "Choose a category (e.g., car brands). Everyone must name an item in turn. Fail to answer — you drink.",

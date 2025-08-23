@@ -113,7 +113,7 @@ export const pl = {
     noOption: "Nie",
   },
   game: {
-    showCard: "Pokaż kartę",
+    showCard: "Kliknij, aby odkryć",
     cardAction: {
       c2: "Zadaj dowolne pytanie innemu graczowi. Jeśli nie odpowie — pije. Jeśli nie chcesz pytać — pijesz sam.",
       c3: "Wybierz kategorię (np. marki samochodów). Każdy po kolei podaje przykład. Kto się zatnie — pije.",
