@@ -78,18 +78,21 @@ export function Game() {
         setPhase("flipping");
         clearTimer();
         timeoutRef.current = window.setTimeout(() => {
-            setPhase("waitingForMove");
+            const lastPhase = useGameStore.getState().phase;
+            if (lastPhase !== 'ended' && lastPhase !== 'paused') {
+                setPhase("waitingForMove");
+            }
             timeoutRef.current = null;
         }, 1000);
     }, [phase, setPhase]);
 
     // сховати картку (flip назад) і перейти до наступної/фіналу
     const hideCard = useCallback(() => {
-        if (phase !== "waitingForMove") return;
+        if (phase === "flipping") return;
         hideSound();
         setPhase("flipping");
         clearTimer();
-        
+
         timeoutRef.current = window.setTimeout(() => {
             const isLast = currentCardIndex + 1 >= deck.length;
 
@@ -101,7 +104,10 @@ export function Game() {
                 }
             } else {
                 nextCard();
-                setPhase("waitingForMove");
+                const lastPhase = useGameStore.getState().phase;
+                if (lastPhase !== 'ended' && lastPhase !== 'paused') {
+                    setPhase("waitingForMove");
+                }
             }
             timeoutRef.current = null;
         }, 1000);
@@ -114,6 +120,7 @@ export function Game() {
         setDeck(generateDeck(game.limitCards));
         setResetTimer(true);
         setCardFlipped(false); // 🔧 важливо: повертаємо у вихідний стан
+
         setPhase("idle");
     }, [game.limitCards, resetGame, setDeck, setPhase]);
 
@@ -126,7 +133,6 @@ export function Game() {
         <GameWrapper>
             <TimerWidget
                 gameMinutes={game.limitTime}
-                // gameMinutes={0.02}
                 resetTimer={resetTimer}
                 setResetTimer={setResetTimer}
             />
@@ -165,7 +171,7 @@ export function Game() {
                     setCardFlipped(false);
                     navigate('/');
                 }}
-                openSound={phase === 'ended' ? finisSound : () => {}}
+                openSound={phase === 'ended' ? finisSound : () => { }}
                 // openSound={finisSound}
                 confirmButton={phase === 'paused' ? translations.game.CtaUnpause : translations.game.CtaPlayAgain}
                 cancelButton={translations.game.CtaFinishGame}
