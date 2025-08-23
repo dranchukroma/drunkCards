@@ -23,13 +23,13 @@ export function Settings() {
 
     return (
         <SettingWrapper>
-            <ToggleGroup
+            {/* <ToggleGroup
                 label={translations.settings.music}
                 onTooltip={() => toast.info(translations.settings.musicTooltip)}
                 options={toggleOptions.booleanOptions}
                 defaultOption={audio.music}
                 onOptionChange={(option) => audio.setMusic(option)}
-            />
+            /> */}
             <ToggleGroup
                 label={translations.settings.sounds}
                 onTooltip={() => toast.info(translations.settings.soundsTooltip)}
