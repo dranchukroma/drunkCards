@@ -127,7 +127,7 @@ const theme = {
       base: "#2D4059",
       gradient: "radial-gradient(circle, #6C7A89 0%, #2D4059 100%)",
       uiBase: "#D9DEE3",
-      uiGradient: "linear-gradient(-90deg, #D9DEE3 0%, #BFC9D1 100%)",
+      uiGradient: "linear-gradient(-90deg,rgb(164, 170, 177) 0%,rgb(178, 186, 192) 100%)",
       uiSelected: "#8593a8",
       toggleBackground: "#0F1C2EAA",
       fontColor: "#fff",
