@@ -68,7 +68,7 @@ export function SettingsProvider({ children }: SettingsProviderProps) {
     const [settings, setSettings] = useState({
         language: setDefaultString('language', userLang) as LanguageCode,
         multiLanguage: setDefaultBoolean('multiLanguage', true),
-        sounds: setDefaultBoolean('sounds', false),
+        sounds: setDefaultBoolean('sounds', true),
         music: setDefaultBoolean('music', false),
         background: setDefaultString('background', 'bg1'),
         limitTime: setDefaultNumber('limitTime', 90),
