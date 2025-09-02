@@ -55,6 +55,7 @@ export const CardStyles = css<{ $bgColor: string; $color: string }>`
 export const CardFront = styled.div<{ $bgColor: string; $color: string }>`
   ${CardStyles};
   z-index: 1;
+  text-align: center;
 `;
 
 export const CardBack = styled.div<{ $bgColor: string; $color: string }>`

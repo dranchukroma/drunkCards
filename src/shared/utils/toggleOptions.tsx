@@ -26,6 +26,7 @@ export const getToggletOptions = (t: TranslationSchema): {
             { display: <FlagEn />, value: "en" },
             { display: <FlagPl />, value: "pl" },
             { display: <FlagUk />, value: "uk" },
+            { display: <>RU</>, value: "ru" },
         ] satisfies Array<{ display: ReactNode, value: LanguageCode }>,
 
         booleanOptions: [
