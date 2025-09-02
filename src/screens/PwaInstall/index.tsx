@@ -71,12 +71,12 @@ export function PwaInstall({ }: PwaInstallProps) {
                     </StepSection>
                 ))}
             </StepContainer>
-            <SkipButton onClick={() => {
+            {/* <SkipButton onClick={() => {
                 localStorage.setItem('skipPWA', 'true');
                 navigate('/');
             }}>
                 {translations.pwa.skip}
-            </SkipButton>
+            </SkipButton> */}
         </DownloadWrapper>
     );
 }

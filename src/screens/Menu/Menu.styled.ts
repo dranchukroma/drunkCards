@@ -60,6 +60,6 @@ export const LogoLabel = styled.h2<{ $fillColor: string }>`
 
 export const CreatedBy = styled.p`
   position: absolute;
-  bottom: 3px;
+  bottom: 15px;
   font-size: ${theme.fontSize.smallParagraf};
 `

@@ -5,8 +5,8 @@ export const usePwaRedirect = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const skipPWA = localStorage.getItem('skipPWA');
-        if(skipPWA) return;
+        // const skipPWA = localStorage.getItem('skipPWA');
+        // if(skipPWA) return;
 
         const isStandalone = window.matchMedia("(display-mode: standalone)").matches;
         const isStandaloneIOS = (window.navigator as any).standalone === true;
@@ -36,8 +36,9 @@ export const usePwaRedirect = () => {
         if (isMobile && !(isStandalone || isStandaloneIOS)) {
             const query = `?browser=${br}&mobileOS=${os}`;
             navigate(`/PwaInstall${query}`, { replace: true });
-        } else {
-            localStorage.setItem('skipPWA', 'true');
         }
+        //  else {
+        //     localStorage.setItem('skipPWA', 'true');
+        // }
     }, [navigate]);
 };
