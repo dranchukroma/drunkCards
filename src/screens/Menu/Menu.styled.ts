@@ -57,3 +57,9 @@ export const LogoLabel = styled.h2<{ $fillColor: string }>`
     font-weight: ${theme.fontWeight.bold};
     margin-bottom: 20px;
 `
+
+export const CreatedBy = styled.p`
+  position: absolute;
+  bottom: 3px;
+  font-size: ${theme.fontSize.smallParagraf};
+`

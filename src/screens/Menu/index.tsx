@@ -1,4 +1,4 @@
-import { MenuWrapper, StyledImageLogo, SuitsWrapper, LogoLabel, IconClubs, IconHearts, IconDiamonds, IconSpades } from "./Menu.styled";
+import { MenuWrapper, StyledImageLogo, SuitsWrapper, LogoLabel, IconClubs, IconHearts, IconDiamonds, IconSpades, CreatedBy } from "./Menu.styled";
 import MenuButton from "shared/components/Buttons/MenuButton";
 import { useLanguage } from "../../providers/LanguageProvider";
 import { useNavigate } from "react-router-dom";
@@ -47,6 +47,8 @@ export function Menu() {
             <MenuButton onClick={() => navigate('/settings')}>
                 {translations.menu.settingsCTA}
             </MenuButton>
+            <CreatedBy>Created by @dranchukroma</CreatedBy>
+            {/* <CreatedBy>Created by Roman Dranchuk</CreatedBy> */}
         </MenuWrapper>
     )
 }
